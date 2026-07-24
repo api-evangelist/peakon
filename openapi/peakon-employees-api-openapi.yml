@@ -1,0 +1,353 @@
+openapi: 3.0.0
+info:
+  version: 1.1.0
+  title: Peakon Actions Employees API
+  description: The Public Peakon API
+servers:
+- url: https://{subdomain}.peakon.com/api/v1/
+  variables:
+    subdomain:
+      description: Unique subdomain assigned to your Peakon instance.
+      default: api
+tags:
+- description: Manage employees
+  name: Employees
+paths:
+  /employees:
+    get:
+      tags:
+      - Employees
+      summary: Get employees
+      parameters:
+      - name: filter[account.email]
+        schema:
+          type: string
+        in: query
+      - name: filter[accountId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[admin]
+        schema:
+          type: boolean
+        in: query
+      - name: filter[employeeId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[manager]
+        schema:
+          type: boolean
+        in: query
+      - name: filter[segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'employees' objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/employees'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+    post:
+      tags:
+      - Employees
+      summary: Create employee
+      parameters: []
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/employees'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /employees/contexts/{contextId}:
+    get:
+      tags:
+      - Employees
+      summary: Get employees for context
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: filter[account.email]
+        schema:
+          type: string
+        in: query
+      - name: filter[accountId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[admin]
+        schema:
+          type: boolean
+        in: query
+      - name: filter[employeeId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[manager]
+        schema:
+          type: boolean
+        in: query
+      - name: filter[segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/employees'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /employees/count:
+    get:
+      tags:
+      - Employees
+      summary: Get employee count
+      parameters:
+      - name: filter[account.email]
+        schema:
+          type: string
+        in: query
+      - name: filter[accountId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[admin]
+        schema:
+          type: boolean
+        in: query
+      - name: filter[employeeId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[manager]
+        schema:
+          type: boolean
+        in: query
+      - name: filter[segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A JSON response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: The total number of employees in the company
+  /employees/contexts/{contextId}/count:
+    get:
+      tags:
+      - Employees
+      summary: Get employee count for context
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: filter[account.email]
+        schema:
+          type: string
+        in: query
+      - name: filter[accountId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[admin]
+        schema:
+          type: boolean
+        in: query
+      - name: filter[employeeId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[manager]
+        schema:
+          type: boolean
+        in: query
+      - name: filter[segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A JSON response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: The total number of employees in the given context
+  /employees/{employeeId}:
+    get:
+      tags:
+      - Employees
+      parameters:
+      - name: employeeId
+        required: true
+        description: The id of the employee
+        schema:
+          type: integer
+        in: path
+      security:
+      - jwt: []
+      summary: Get employee
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/employees'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+    patch:
+      tags:
+      - Employees
+      parameters:
+      - name: employeeId
+        required: true
+        description: The id of the employee
+        schema:
+          type: integer
+        in: path
+      security:
+      - jwt: []
+      summary: Update employee
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/employees'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+    delete:
+      tags:
+      - Employees
+      parameters:
+      - name: employeeId
+        required: true
+        description: The id of the employee
+        schema:
+          type: integer
+        in: path
+      security:
+      - jwt: []
+      summary: Delete employee
+      responses:
+        '204':
+          description: OK
+components:
+  schemas:
+    employees:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            identifier:
+              type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+            name:
+              type: string
+            avatar:
+              type: string
+            employmentStart:
+              type: string
+            external:
+              type: boolean
+        relationships:
+          type: object
+          properties:
+            account:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/resourceIdentifier'
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+      type: object

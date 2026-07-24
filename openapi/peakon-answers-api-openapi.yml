@@ -1,0 +1,174 @@
+openapi: 3.0.0
+info:
+  version: 1.1.0
+  title: Peakon Actions Answers API
+  description: The Public Peakon API
+servers:
+- url: https://{subdomain}.peakon.com/api/v1/
+  variables:
+    subdomain:
+      description: Unique subdomain assigned to your Peakon instance.
+      default: api
+tags:
+- name: Answers
+paths:
+  /answers/export:
+    get:
+      tags:
+      - Answers
+      summary: Get survey answers
+      parameters:
+      - name: per_page
+        required: true
+        description: The maximum number of survey answers returned per page
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 20000
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A list of survey answer with related fields included
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: A unique numeric ID identifying the answer
+                        type:
+                          type: string
+                          description: Is always 'answers_export'
+                          enum:
+                          - answers_export
+                        attributes:
+                          type: object
+                          properties:
+                            accountEmail:
+                              type: string
+                              description: Email of the participating employee
+                              nullable: true
+                            answerId:
+                              type: integer
+                              description: An ID that uniquely identifies the answer
+                            answerComment:
+                              type: string
+                              description: A comment given by the participating employee for the given question
+                              nullable: true
+                            answerLocale:
+                              type: string
+                              description: A locale that was detected based on the answers given during the survey. If possible the language of questionText will match this.
+                              nullable: true
+                            answerScore:
+                              type: integer
+                              description: The score given by participating employee for the given question
+                              nullable: true
+                            answerSkipReason:
+                              type: string
+                              description: If the question was skipped, this field contain the reason
+                              nullable: true
+                            answerText:
+                              type: string
+                              description: If the question should be answered with text and not a score, this field contain the answer given
+                              nullable: true
+                            categoryGroup:
+                              type: string
+                              description: The set of questions that the asked question belong to
+                              nullable: true
+                            categoryId:
+                              type: string
+                              description: An ID that uniquely identifies the category/driver that the asked question belong to
+                              nullable: true
+                            categoryStandard:
+                              type: string
+                              description: Can be used to identify built-in categories/drivers across companies
+                              nullable: true
+                            companyId:
+                              type: integer
+                              description: An ID that uniquely identifies the company
+                              nullable: true
+                            employeeExternalId:
+                              type: string
+                              description: A company-specified ID that can used to identify an employee
+                              nullable: true
+                            employeeId:
+                              type: string
+                              description: An ID that uniquely identifies the employee
+                              nullable: true
+                            questionId:
+                              type: string
+                              description: An ID that uniquely identifies the asked question. Each question has translations so that questionText in different locales ties into the same questionId.
+                              nullable: true
+                            questionText:
+                              type: string
+                              description: The text of the question being asked. The language of questionText will match answerLocale. Default is the question text seen in the Peakon product.
+                              nullable: true
+                            questionType:
+                              type: string
+                              description: The type of question asked.
+                              enum:
+                              - scale
+                              - text
+                              - value
+                              nullable: true
+                            responseAnsweredAt:
+                              type: string
+                              format: date-time
+                              description: The time when the survey response was submitted
+                              nullable: true
+                            responseId:
+                              type: integer
+                              description: An ID that uniquely identifies the asked response
+                              nullable: true
+                            roundEnd:
+                              type: string
+                              format: date
+                              description: A date for when the survey round ended
+                              nullable: true
+                            roundId:
+                              type: integer
+                              description: An ID that uniquely identifies the round
+                              nullable: true
+                            roundOpensAt:
+                              type: string
+                              format: date
+                              description: A date for when the survey round opened
+                              nullable: true
+                            roundType:
+                              type: string
+                              description: Is "test" if the survey is a test survey. "automatic" otherwise.
+                              enum:
+                              - automatic
+                              - test
+                              nullable: true
+                            scheduleContextName:
+                              type: string
+                              description: The name of the Company or Segment that the schedule is for
+                              nullable: true
+                            scheduleId:
+                              type: integer
+                              description: An ID that uniquely identifies the schedule
+                              nullable: true
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        format: uri
+                        nullable: false
+                      self:
+                        type: string
+                        format: uri
+                        nullable: false
+                      next:
+                        type: string
+                        format: uri
+                        nullable: true

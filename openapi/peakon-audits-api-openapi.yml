@@ -1,0 +1,544 @@
+openapi: 3.0.0
+info:
+  version: 1.1.0
+  title: Peakon Actions Audits API
+  description: The Public Peakon API
+servers:
+- url: https://{subdomain}.peakon.com/api/v1/
+  variables:
+    subdomain:
+      description: Unique subdomain assigned to your Peakon instance.
+      default: api
+tags:
+- description: Retrieving company audit log
+  name: Audits
+paths:
+  /audits/company/{companyId}:
+    get:
+      tags:
+      - Audits
+      summary: Get audits
+      parameters:
+      - name: companyId
+        required: true
+        description: The id of the company
+        schema:
+          type: integer
+        in: path
+      - name: filter[createdAt]
+        schema:
+          type: string
+          format: date-time
+        description: Used to filter events based on dates. The operator should follow the value. Operators can f.ex. be $gte for "Greater than or equal" and $lte for "Less than or equal".
+        example: 2019-11-04$gte
+        in: query
+      - name: filter[event]
+        schema:
+          type: string
+          enum:
+          - accepted
+          - acknowledged
+          - actionsReminder
+          - activated
+          - added
+          - addedAttribute
+          - addedCompanySubdomain
+          - addedDomain
+          - anonymized
+          - answer
+          - archived
+          - assignedQuestions
+          - authentication
+          - blocked
+          - bounced
+          - changedRole
+          - clear
+          - clearedComplaints
+          - cleared_bounces
+          - close
+          - complained
+          - completed
+          - confirmationRequest
+          - confirmed
+          - consent
+          - correlated
+          - create
+          - created
+          - createdCompanyShard
+          - dailySent
+          - dataObliterateStarted
+          - delete
+          - deleted
+          - deletedComment
+          - deletedCompanyShard
+          - deletedCompanySubdomain
+          - deletedInput
+          - disabled
+          - employeeAttributesChanged
+          - enabled
+          - ended
+          - exceeded
+          - expired
+          - frequenciesUpdated
+          - generateAuthenticationCode
+          - generatedAgentToken
+          - generatedLogHash
+          - hard-close
+          - hookDisabled
+          - hookEnabled
+          - hookFailed
+          - hookFired
+          - hookPaused
+          - importStarted
+          - imported
+          - incompleted
+          - lowParticipation
+          - markAllAsRead
+          - markAllAsViewed
+          - markAsUnviewed
+          - markAsViewed
+          - markedSensitive
+          - migrated
+          - notified
+          - nps
+          - obliterated
+          - open
+          - passwordChange
+          - passwordRecovery
+          - presentation
+          - push
+          - reasonSet
+          - recalculated
+          - recoveryRequest
+          - recurred
+          - regeneratedCode
+          - regenerated_token
+          - rejected
+          - remind
+          - reminded
+          - removedAttribute
+          - removedDomain
+          - reopen
+          - resend
+          - reset
+          - resetQueued
+          - responseRequest
+          - restored
+          - resubscribed
+          - retire
+          - revealIdentity
+          - samlLoginRequest
+          - samlLogoutRequest
+          - scheduleLowParticipation
+          - scheduleRemind
+          - scheduled
+          - segmentationDisabled
+          - segmentationEnabled
+          - send
+          - sendLowParticipation
+          - sent
+          - set
+          - signup_consent_given
+          - smsReceipt
+          - smsReceived
+          - smsSent
+          - statusUpdated
+          - stripped
+          - suggested
+          - switch
+          - transferComplete
+          - transferStart
+          - twofactorRegisterCompleted
+          - twofactorRegisterStarted
+          - twofactorRemoved
+          - twofactorSms
+          - twofactorVerified
+          - unarchived
+          - unassignedQuestions
+          - unblocked
+          - uncompleted
+          - unmarkedSensitive
+          - unsubscribed
+          - upcomingRound
+          - update
+          - updated
+          - updatedPrimaryCompanySubdomain
+          - upgrade
+          - upserted
+          - useAuthenticationCode
+          - verificationStatusChanged
+          - withdrawn
+        description: The event to filter the audits by. Some events will not be available for 3rd party access.
+        in: query
+      - name: filter[objectType]
+        schema:
+          type: string
+          enum:
+          - Account
+          - AccountSettings
+          - Action
+          - ActionItem
+          - ActionRejection
+          - Answer
+          - AnswerTopic
+          - AppIntegration
+          - Application
+          - Attribute
+          - AttributeHierarchy
+          - AttributeLink
+          - AttributeOption
+          - AttributeRange
+          - AttributeTreeNode
+          - Bookmark
+          - Branding
+          - Category
+          - Comment
+          - CommentSemanticSearchFeedback
+          - Company
+          - CompanyAction
+          - CompanyBenchmarkVersion
+          - CompanyResource
+          - CompanySettings
+          - Consultant
+          - Conversation
+          - ConversationMessage
+          - CustomConsent
+          - CustomConsentAccept
+          - CustomSenderDomain
+          - DenylistedTopic
+          - Device
+          - Employee
+          - EmployeeAttribute
+          - ExternalMetric
+          - ExternalMetricObservation
+          - FeatureFlip
+          - Feedback
+          - FeedbackRecipient
+          - Group
+          - GroupMember
+          - MailDomain
+          - Notification
+          - NotificationSettings
+          - Phone
+          - PriorityDriver
+          - PrioritySegment
+          - Question
+          - QuestionRule
+          - Response
+          - Round
+          - SAMLConfiguration
+          - Schedule
+          - Segment
+          - SegmentLimit
+          - SegmentLink
+          - SegmentManager
+          - SemanticTag
+          - SemanticTagFeedback
+          - SensitiveComment
+          - SensitiveConcept
+          - SensitiveKeyword
+          - Session
+          - Share
+          - TeamSuggestion
+          - TestCompany
+          - Topic
+          - TopicFeedback
+          - Value
+          - Vote
+        description: The type of object to filter the audits by. Some types of objects will not be available for 3rd party access.
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'audits' objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/audits'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+components:
+  schemas:
+    audits:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            createdAt:
+              type: string
+              format: date-time
+            event:
+              type: string
+              enum:
+              - activated
+              - authentication
+              - bounced
+              - complained
+              - changedRole
+              - cleared_bounces
+              - clearedComplaints
+              - completed
+              - confirmationRequest
+              - confirmed
+              - created
+              - generateAuthenticationCode
+              - generatedAgentToken
+              - passwordChange
+              - passwordRecovery
+              - presentation
+              - recoveryRequest
+              - resubscribed
+              - samlLogoutRequest
+              - signup_consent_given
+              - twofactorRegisterCompleted
+              - twofactorRegisterStarted
+              - twofactorRemoved
+              - uncompleted
+              - unsubscribed
+              - updated
+              - upserted
+              - useAuthenticationCode
+              - archived
+              - deleted
+              - incompleted
+              - suggested
+              - unarchived
+              - acknowledged
+              - deletedComment
+              - deletedInput
+              - markedSensitive
+              - unmarkedSensitive
+              - delete
+              - hookFailed
+              - hookFired
+              - hookPaused
+              - hookDisabled
+              - hookEnabled
+              - obliterated
+              - segmentationDisabled
+              - segmentationEnabled
+              - assignedQuestions
+              - unassignedQuestions
+              - revealIdentity
+              - addedDomain
+              - removedDomain
+              - anonymized
+              - blocked
+              - imported
+              - importStarted
+              - dataObliterateStarted
+              - regeneratedCode
+              - samlLoginRequest
+              - unblocked
+              - createdCompanyShard
+              - deletedCompanyShard
+              - addedCompanySubdomain
+              - updatedPrimaryCompanySubdomain
+              - deletedCompanySubdomain
+              - generatedLogHash
+              - stripped
+              - ended
+              - accepted
+              - withdrawn
+              - enabled
+              - disabled
+              - verificationStatusChanged
+              - push
+              - actionsReminder
+              - consent
+              - dailySent
+              - lowParticipation
+              - markAllAsRead
+              - markAllAsViewed
+              - notified
+              - nps
+              - smsSent
+              - upcomingRound
+              - employeeAttributesChanged
+              - correlated
+              - added
+              - markAsViewed
+              - markAsUnviewed
+              - sent
+              - smsReceipt
+              - smsReceived
+              - set
+              - migrated
+              - rejected
+              - expired
+              - retire
+              - scheduled
+              - upgrade
+              - answer
+              - clear
+              - create
+              - open
+              - remind
+              - reopen
+              - resend
+              - reset
+              - responseRequest
+              - scheduleRemind
+              - send
+              - close
+              - hard-close
+              - scheduleLowParticipation
+              - sendLowParticipation
+              - update
+              - addedAttribute
+              - recurred
+              - reminded
+              - removedAttribute
+              - frequenciesUpdated
+              - restored
+              - recalculated
+              - exceeded
+              - statusUpdated
+              - reasonSet
+              - switch
+              - transferComplete
+              - transferStart
+              - twofactorSms
+              - twofactorVerified
+              - regenerated_token
+              - resetQueued
+            objectType:
+              type: string
+              enum:
+              - Account
+              - AccountSettings
+              - Action
+              - ActionItem
+              - ActionRejection
+              - Answer
+              - AnswerTopic
+              - AppIntegration
+              - Application
+              - Attribute
+              - AttributeHierarchy
+              - AttributeLink
+              - AttributeOption
+              - AttributeRange
+              - AttributeTreeNode
+              - Bookmark
+              - Branding
+              - Category
+              - Comment
+              - CommentSemanticSearchFeedback
+              - Company
+              - CompanyAction
+              - CompanyBenchmarkVersion
+              - CompanyResource
+              - CompanySettings
+              - Consultant
+              - Conversation
+              - ConversationMessage
+              - CustomConsent
+              - CustomConsentAccept
+              - CustomSenderDomain
+              - DenylistedTopic
+              - Device
+              - Employee
+              - EmployeeAttribute
+              - ExternalMetric
+              - ExternalMetricObservation
+              - FeatureFlip
+              - Feedback
+              - FeedbackRecipient
+              - Group
+              - GroupMember
+              - MailDomain
+              - Notification
+              - NotificationSettings
+              - Phone
+              - PriorityDriver
+              - PrioritySegment
+              - Question
+              - QuestionRule
+              - Response
+              - Round
+              - SAMLConfiguration
+              - Schedule
+              - Segment
+              - SegmentLimit
+              - SegmentLink
+              - SegmentManager
+              - SemanticTag
+              - SemanticTagFeedback
+              - SensitiveComment
+              - SensitiveConcept
+              - SensitiveKeyword
+              - Session
+              - Share
+              - TeamSuggestion
+              - TestCompany
+              - Topic
+              - TopicFeedback
+              - Value
+              - Vote
+            objectId:
+              type: integer
+            data:
+              type: object
+            text:
+              type: string
+            address:
+              type: object
+            location:
+              type: object
+              properties:
+                city:
+                  type: string
+                country:
+                  type: string
+                countryCode:
+                  type: string
+                location:
+                  type: object
+                  properties:
+                    latitude:
+                      type: number
+                      format: double
+                    longitude:
+                      type: number
+                      format: double
+            agent:
+              type: object
+              properties:
+                browser:
+                  type: string
+                version:
+                  type: string
+                os:
+                  type: string
+                osVersion:
+                  type: string
+        relationships:
+          type: object
+          properties:
+            account:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/resourceIdentifier'
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+      type: object

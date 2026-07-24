@@ -1,0 +1,1454 @@
+openapi: 3.0.0
+info:
+  version: 1.1.0
+  title: Peakon Actions Engagement API
+  description: The Public Peakon API
+servers:
+- url: https://{subdomain}.peakon.com/api/v1/
+  variables:
+    subdomain:
+      description: Unique subdomain assigned to your Peakon instance.
+      default: api
+tags:
+- description: Retrieving engagement scores
+  name: Engagement
+paths:
+  /engagement/overview:
+    get:
+      tags:
+      - Engagement
+      summary: Get overview
+      description: Return the engagement overview for the entire company.
+      parameters:
+      - name: observations
+        description: Includes observations array in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: participation
+        description: Includes participation in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: interval
+        description: Limit query to a specific date interval, defaults to *quarter*.
+        schema:
+          type: string
+          enum:
+          - month
+          - quarter
+          - year
+          - all
+          - recent
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_overviews'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/engagementOverviews'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /engagement/contexts/{contextId}/overview:
+    get:
+      tags:
+      - Engagement
+      summary: Get overview for context
+      description: Return the engagement overview for the specified context.
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: observations
+        description: Includes observations array in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: participation
+        description: Includes participation in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: interval
+        description: Limit query to a specific date interval, defaults to *quarter*.
+        schema:
+          type: string
+          enum:
+          - month
+          - quarter
+          - year
+          - all
+          - recent
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_overviews'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/engagementOverviews'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /engagement/drivers:
+    get:
+      tags:
+      - Engagement
+      summary: Get for drivers
+      description: Return the engagement details per driver for the entire company.
+      parameters:
+      - name: filter[employee.segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        description: The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with "$contains".
+        example: 22$contains
+        in: query
+      - name: filter[question.driver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - autonomy
+          - collaboration
+          - communication
+          - engagement
+          - environment
+          - free_opinions
+          - goal_setting
+          - growth
+          - management_support
+          - meaningful_work
+          - organisational_fit
+          - peer_relationship
+          - recognition
+          - reward
+          - reward_recognition
+          - strategy
+          - workload
+        in: query
+      - name: filter[question.subdriver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - advocacy
+          - alignment
+          - belief
+          - belief_in_action
+          - belief_in_strategy
+          - burnout
+          - career_development
+          - career_path
+          - challenging
+          - collaboration
+          - communication
+          - cross_collaboration
+          - customer_satisfaction
+          - demand_for_skills
+          - distributive_fairness
+          - effective_systems
+          - effective_tools
+          - efficacy
+          - equality
+          - equipment
+          - expectancy_theory
+          - fair_rewards
+          - feel_accomplished
+          - feeling_energised
+          - finding_focus
+          - focus
+          - friendly
+          - goals
+          - health
+          - how
+          - how_to_work
+          - impact
+          - inclusive_culture
+          - informal
+          - interactional_fairness
+          - job_fit
+          - job_security
+          - job_significance
+          - known_expectations
+          - leadership_honesty
+          - learning
+          - learning_from_mistakes
+          - learning_resources
+          - loyalty
+          - manageable_work
+          - manager
+          - manager_support
+          - meaningful_work
+          - meeting_customer_needs
+          - mentoring
+          - mission
+          - multiple_perspectives
+          - one_to_ones
+          - openness
+          - opinions_matter
+          - opportunity
+          - performance
+          - pride_in_work
+          - procedural_fairness
+          - professional_growth
+          - recognition
+          - response
+          - safe_sharing_environment
+          - satisfaction
+          - self_confidence
+          - strategy
+          - support
+          - team
+          - timely_communication
+          - trying_new_things
+          - values
+          - values_fit
+          - when
+          - where
+          - willing_to_help
+          - work_environment
+          - work_meaning
+        in: query
+      - name: filter[question.valueId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[round.type]
+        schema:
+          type: string
+          default: automatic
+          enum:
+          - automatic
+          - test
+        description: The type of rounds to include data for
+        in: query
+      - name: observations
+        description: Includes observations array in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: participation
+        description: Includes participation in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: interval
+        description: Limit query to a specific date interval, defaults to *quarter*.
+        schema:
+          type: string
+          enum:
+          - month
+          - quarter
+          - year
+          - all
+          - recent
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'engagement_drivers' objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/engagementDrivers'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /engagement/contexts/{contextId}/drivers:
+    get:
+      tags:
+      - Engagement
+      summary: Get for drivers for context
+      description: Return the engagement details per driver for the given context.
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: filter[employee.segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        description: The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with "$contains".
+        example: 22$contains
+        in: query
+      - name: filter[question.driver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - autonomy
+          - collaboration
+          - communication
+          - engagement
+          - environment
+          - free_opinions
+          - goal_setting
+          - growth
+          - management_support
+          - meaningful_work
+          - organisational_fit
+          - peer_relationship
+          - recognition
+          - reward
+          - reward_recognition
+          - strategy
+          - workload
+        in: query
+      - name: filter[question.subdriver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - advocacy
+          - alignment
+          - belief
+          - belief_in_action
+          - belief_in_strategy
+          - burnout
+          - career_development
+          - career_path
+          - challenging
+          - collaboration
+          - communication
+          - cross_collaboration
+          - customer_satisfaction
+          - demand_for_skills
+          - distributive_fairness
+          - effective_systems
+          - effective_tools
+          - efficacy
+          - equality
+          - equipment
+          - expectancy_theory
+          - fair_rewards
+          - feel_accomplished
+          - feeling_energised
+          - finding_focus
+          - focus
+          - friendly
+          - goals
+          - health
+          - how
+          - how_to_work
+          - impact
+          - inclusive_culture
+          - informal
+          - interactional_fairness
+          - job_fit
+          - job_security
+          - job_significance
+          - known_expectations
+          - leadership_honesty
+          - learning
+          - learning_from_mistakes
+          - learning_resources
+          - loyalty
+          - manageable_work
+          - manager
+          - manager_support
+          - meaningful_work
+          - meeting_customer_needs
+          - mentoring
+          - mission
+          - multiple_perspectives
+          - one_to_ones
+          - openness
+          - opinions_matter
+          - opportunity
+          - performance
+          - pride_in_work
+          - procedural_fairness
+          - professional_growth
+          - recognition
+          - response
+          - safe_sharing_environment
+          - satisfaction
+          - self_confidence
+          - strategy
+          - support
+          - team
+          - timely_communication
+          - trying_new_things
+          - values
+          - values_fit
+          - when
+          - where
+          - willing_to_help
+          - work_environment
+          - work_meaning
+        in: query
+      - name: filter[question.valueId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[round.type]
+        schema:
+          type: string
+          default: automatic
+          enum:
+          - automatic
+          - test
+        description: The type of rounds to include data for
+        in: query
+      - name: observations
+        description: Includes observations array in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: participation
+        description: Includes participation in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: interval
+        description: Limit query to a specific date interval, defaults to *quarter*.
+        schema:
+          type: string
+          enum:
+          - month
+          - quarter
+          - year
+          - all
+          - recent
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'engagement_drivers' objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/engagementDrivers'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /engagement/drivers/{driver}:
+    get:
+      tags:
+      - Engagement
+      summary: Get by driver
+      description: Return the engagement details for the given driver for the entire company.
+      parameters:
+      - name: driver
+        required: true
+        description: One of 18 supported engagement drivers
+        schema:
+          enum:
+          - accomplishment
+          - autonomy
+          - collaboration
+          - communication
+          - engagement
+          - environment
+          - free_opinions
+          - goal_setting
+          - growth
+          - management_support
+          - meaningful_work
+          - organisational_fit
+          - peer_relationship
+          - recognition
+          - reward
+          - reward_recognition
+          - strategy
+          - workload
+        in: path
+      - name: filter[employee.segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        description: The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with "$contains".
+        example: 22$contains
+        in: query
+      - name: filter[question.driver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - autonomy
+          - collaboration
+          - communication
+          - engagement
+          - environment
+          - free_opinions
+          - goal_setting
+          - growth
+          - management_support
+          - meaningful_work
+          - organisational_fit
+          - peer_relationship
+          - recognition
+          - reward
+          - reward_recognition
+          - strategy
+          - workload
+        in: query
+      - name: filter[question.subdriver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - advocacy
+          - alignment
+          - belief
+          - belief_in_action
+          - belief_in_strategy
+          - burnout
+          - career_development
+          - career_path
+          - challenging
+          - collaboration
+          - communication
+          - cross_collaboration
+          - customer_satisfaction
+          - demand_for_skills
+          - distributive_fairness
+          - effective_systems
+          - effective_tools
+          - efficacy
+          - equality
+          - equipment
+          - expectancy_theory
+          - fair_rewards
+          - feel_accomplished
+          - feeling_energised
+          - finding_focus
+          - focus
+          - friendly
+          - goals
+          - health
+          - how
+          - how_to_work
+          - impact
+          - inclusive_culture
+          - informal
+          - interactional_fairness
+          - job_fit
+          - job_security
+          - job_significance
+          - known_expectations
+          - leadership_honesty
+          - learning
+          - learning_from_mistakes
+          - learning_resources
+          - loyalty
+          - manageable_work
+          - manager
+          - manager_support
+          - meaningful_work
+          - meeting_customer_needs
+          - mentoring
+          - mission
+          - multiple_perspectives
+          - one_to_ones
+          - openness
+          - opinions_matter
+          - opportunity
+          - performance
+          - pride_in_work
+          - procedural_fairness
+          - professional_growth
+          - recognition
+          - response
+          - safe_sharing_environment
+          - satisfaction
+          - self_confidence
+          - strategy
+          - support
+          - team
+          - timely_communication
+          - trying_new_things
+          - values
+          - values_fit
+          - when
+          - where
+          - willing_to_help
+          - work_environment
+          - work_meaning
+        in: query
+      - name: filter[question.valueId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[round.type]
+        schema:
+          type: string
+          default: automatic
+          enum:
+          - automatic
+          - test
+        description: The type of rounds to include data for
+        in: query
+      - name: observations
+        description: Includes observations array in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: participation
+        description: Includes participation in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: interval
+        description: Limit query to a specific date interval, defaults to *quarter*.
+        schema:
+          type: string
+          enum:
+          - month
+          - quarter
+          - year
+          - all
+          - recent
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_drivers'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/engagementDrivers'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /engagement/contexts/{contextId}/drivers/{driver}:
+    get:
+      tags:
+      - Engagement
+      summary: Get by driver for context
+      description: Return the engagement details for the given driver for the given context.
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: driver
+        required: true
+        description: One of 18 supported engagement drivers
+        schema:
+          enum:
+          - accomplishment
+          - autonomy
+          - collaboration
+          - communication
+          - engagement
+          - environment
+          - free_opinions
+          - goal_setting
+          - growth
+          - management_support
+          - meaningful_work
+          - organisational_fit
+          - peer_relationship
+          - recognition
+          - reward
+          - reward_recognition
+          - strategy
+          - workload
+        in: path
+      - name: filter[employee.segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        description: The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with "$contains".
+        example: 22$contains
+        in: query
+      - name: filter[question.driver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - autonomy
+          - collaboration
+          - communication
+          - engagement
+          - environment
+          - free_opinions
+          - goal_setting
+          - growth
+          - management_support
+          - meaningful_work
+          - organisational_fit
+          - peer_relationship
+          - recognition
+          - reward
+          - reward_recognition
+          - strategy
+          - workload
+        in: query
+      - name: filter[question.subdriver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - advocacy
+          - alignment
+          - belief
+          - belief_in_action
+          - belief_in_strategy
+          - burnout
+          - career_development
+          - career_path
+          - challenging
+          - collaboration
+          - communication
+          - cross_collaboration
+          - customer_satisfaction
+          - demand_for_skills
+          - distributive_fairness
+          - effective_systems
+          - effective_tools
+          - efficacy
+          - equality
+          - equipment
+          - expectancy_theory
+          - fair_rewards
+          - feel_accomplished
+          - feeling_energised
+          - finding_focus
+          - focus
+          - friendly
+          - goals
+          - health
+          - how
+          - how_to_work
+          - impact
+          - inclusive_culture
+          - informal
+          - interactional_fairness
+          - job_fit
+          - job_security
+          - job_significance
+          - known_expectations
+          - leadership_honesty
+          - learning
+          - learning_from_mistakes
+          - learning_resources
+          - loyalty
+          - manageable_work
+          - manager
+          - manager_support
+          - meaningful_work
+          - meeting_customer_needs
+          - mentoring
+          - mission
+          - multiple_perspectives
+          - one_to_ones
+          - openness
+          - opinions_matter
+          - opportunity
+          - performance
+          - pride_in_work
+          - procedural_fairness
+          - professional_growth
+          - recognition
+          - response
+          - safe_sharing_environment
+          - satisfaction
+          - self_confidence
+          - strategy
+          - support
+          - team
+          - timely_communication
+          - trying_new_things
+          - values
+          - values_fit
+          - when
+          - where
+          - willing_to_help
+          - work_environment
+          - work_meaning
+        in: query
+      - name: filter[question.valueId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[round.type]
+        schema:
+          type: string
+          default: automatic
+          enum:
+          - automatic
+          - test
+        description: The type of rounds to include data for
+        in: query
+      - name: observations
+        description: Includes observations array in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: participation
+        description: Includes participation in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: interval
+        description: Limit query to a specific date interval, defaults to *quarter*.
+        schema:
+          type: string
+          enum:
+          - month
+          - quarter
+          - year
+          - all
+          - recent
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_drivers'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/engagementDrivers'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /engagement/contexts/{contextId}/segments/v2:
+    get:
+      tags:
+      - Engagement
+      summary: Get segments
+      description: Obtain a list of segments. The id of each segment can be used to get full engagement details using other methods in this area.
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: filter[employee.segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        description: The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with "$contains".
+        example: 22$contains
+        in: query
+      - name: filter[question.driver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - autonomy
+          - collaboration
+          - communication
+          - engagement
+          - environment
+          - free_opinions
+          - goal_setting
+          - growth
+          - management_support
+          - meaningful_work
+          - organisational_fit
+          - peer_relationship
+          - recognition
+          - reward
+          - reward_recognition
+          - strategy
+          - workload
+        in: query
+      - name: filter[question.subdriver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - advocacy
+          - alignment
+          - belief
+          - belief_in_action
+          - belief_in_strategy
+          - burnout
+          - career_development
+          - career_path
+          - challenging
+          - collaboration
+          - communication
+          - cross_collaboration
+          - customer_satisfaction
+          - demand_for_skills
+          - distributive_fairness
+          - effective_systems
+          - effective_tools
+          - efficacy
+          - equality
+          - equipment
+          - expectancy_theory
+          - fair_rewards
+          - feel_accomplished
+          - feeling_energised
+          - finding_focus
+          - focus
+          - friendly
+          - goals
+          - health
+          - how
+          - how_to_work
+          - impact
+          - inclusive_culture
+          - informal
+          - interactional_fairness
+          - job_fit
+          - job_security
+          - job_significance
+          - known_expectations
+          - leadership_honesty
+          - learning
+          - learning_from_mistakes
+          - learning_resources
+          - loyalty
+          - manageable_work
+          - manager
+          - manager_support
+          - meaningful_work
+          - meeting_customer_needs
+          - mentoring
+          - mission
+          - multiple_perspectives
+          - one_to_ones
+          - openness
+          - opinions_matter
+          - opportunity
+          - performance
+          - pride_in_work
+          - procedural_fairness
+          - professional_growth
+          - recognition
+          - response
+          - safe_sharing_environment
+          - satisfaction
+          - self_confidence
+          - strategy
+          - support
+          - team
+          - timely_communication
+          - trying_new_things
+          - values
+          - values_fit
+          - when
+          - where
+          - willing_to_help
+          - work_environment
+          - work_meaning
+        in: query
+      - name: filter[question.valueId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[round.type]
+        schema:
+          type: string
+          default: automatic
+          enum:
+          - automatic
+          - test
+        description: The type of rounds to include data for
+        in: query
+      - name: q
+        required: true
+        description: A text to search for in segments
+        schema:
+          type: string
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_segments'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/engagementSegments'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /engagement/contexts/{contextId}/segments/groups:
+    get:
+      tags:
+      - Engagement
+      summary: Get segments groups
+      description: Return the number of segments with engagement data grouped by attribute.
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: filter[employee.segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        description: The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with "$contains".
+        example: 22$contains
+        in: query
+      - name: filter[question.driver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - autonomy
+          - collaboration
+          - communication
+          - engagement
+          - environment
+          - free_opinions
+          - goal_setting
+          - growth
+          - management_support
+          - meaningful_work
+          - organisational_fit
+          - peer_relationship
+          - recognition
+          - reward
+          - reward_recognition
+          - strategy
+          - workload
+        in: query
+      - name: filter[question.subdriver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - advocacy
+          - alignment
+          - belief
+          - belief_in_action
+          - belief_in_strategy
+          - burnout
+          - career_development
+          - career_path
+          - challenging
+          - collaboration
+          - communication
+          - cross_collaboration
+          - customer_satisfaction
+          - demand_for_skills
+          - distributive_fairness
+          - effective_systems
+          - effective_tools
+          - efficacy
+          - equality
+          - equipment
+          - expectancy_theory
+          - fair_rewards
+          - feel_accomplished
+          - feeling_energised
+          - finding_focus
+          - focus
+          - friendly
+          - goals
+          - health
+          - how
+          - how_to_work
+          - impact
+          - inclusive_culture
+          - informal
+          - interactional_fairness
+          - job_fit
+          - job_security
+          - job_significance
+          - known_expectations
+          - leadership_honesty
+          - learning
+          - learning_from_mistakes
+          - learning_resources
+          - loyalty
+          - manageable_work
+          - manager
+          - manager_support
+          - meaningful_work
+          - meeting_customer_needs
+          - mentoring
+          - mission
+          - multiple_perspectives
+          - one_to_ones
+          - openness
+          - opinions_matter
+          - opportunity
+          - performance
+          - pride_in_work
+          - procedural_fairness
+          - professional_growth
+          - recognition
+          - response
+          - safe_sharing_environment
+          - satisfaction
+          - self_confidence
+          - strategy
+          - support
+          - team
+          - timely_communication
+          - trying_new_things
+          - values
+          - values_fit
+          - when
+          - where
+          - willing_to_help
+          - work_environment
+          - work_meaning
+        in: query
+      - name: filter[question.valueId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[round.type]
+        schema:
+          type: string
+          default: automatic
+          enum:
+          - automatic
+          - test
+        description: The type of rounds to include data for
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_segment_groups'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/engagementSegmentGroups'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /engagement/contexts/{contextId}/segments/v2/attributes/{attributeId}:
+    get:
+      tags:
+      - Engagement
+      summary: Get segments for attribute
+      description: Return the segments with engagement data within the given attribute.
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: attributeId
+        required: true
+        description: The id of the attribute to get segments for. Attribute ids can be retrieved using /engagement/contexts/{contextId}/segments.
+        schema:
+          type: integer
+        in: path
+      - name: filter[employee.segmentIds]
+        schema:
+          type: array
+          items:
+            type: integer
+        description: The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with "$contains".
+        example: 22$contains
+        in: query
+      - name: filter[question.driver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - autonomy
+          - collaboration
+          - communication
+          - engagement
+          - environment
+          - free_opinions
+          - goal_setting
+          - growth
+          - management_support
+          - meaningful_work
+          - organisational_fit
+          - peer_relationship
+          - recognition
+          - reward
+          - reward_recognition
+          - strategy
+          - workload
+        in: query
+      - name: filter[question.subdriver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - advocacy
+          - alignment
+          - belief
+          - belief_in_action
+          - belief_in_strategy
+          - burnout
+          - career_development
+          - career_path
+          - challenging
+          - collaboration
+          - communication
+          - cross_collaboration
+          - customer_satisfaction
+          - demand_for_skills
+          - distributive_fairness
+          - effective_systems
+          - effective_tools
+          - efficacy
+          - equality
+          - equipment
+          - expectancy_theory
+          - fair_rewards
+          - feel_accomplished
+          - feeling_energised
+          - finding_focus
+          - focus
+          - friendly
+          - goals
+          - health
+          - how
+          - how_to_work
+          - impact
+          - inclusive_culture
+          - informal
+          - interactional_fairness
+          - job_fit
+          - job_security
+          - job_significance
+          - known_expectations
+          - leadership_honesty
+          - learning
+          - learning_from_mistakes
+          - learning_resources
+          - loyalty
+          - manageable_work
+          - manager
+          - manager_support
+          - meaningful_work
+          - meeting_customer_needs
+          - mentoring
+          - mission
+          - multiple_perspectives
+          - one_to_ones
+          - openness
+          - opinions_matter
+          - opportunity
+          - performance
+          - pride_in_work
+          - procedural_fairness
+          - professional_growth
+          - recognition
+          - response
+          - safe_sharing_environment
+          - satisfaction
+          - self_confidence
+          - strategy
+          - support
+          - team
+          - timely_communication
+          - trying_new_things
+          - values
+          - values_fit
+          - when
+          - where
+          - willing_to_help
+          - work_environment
+          - work_meaning
+        in: query
+      - name: filter[question.valueId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[round.type]
+        schema:
+          type: string
+          default: automatic
+          enum:
+          - automatic
+          - test
+        description: The type of rounds to include data for
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_segments'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/engagementSegments'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+components:
+  schemas:
+    engagementOverviews:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          properties:
+            scores:
+              type: object
+            changes:
+              type: object
+            observations:
+              type: array
+              items:
+                type: object
+            participation:
+              type: object
+      type: object
+    engagementSegmentGroups:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          properties:
+            segmentCount:
+              type: integer
+            negativeCount:
+              type: integer
+            positiveCount:
+              type: integer
+        relationships:
+          type: object
+          properties:
+            attribute:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/resourceIdentifier'
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+      type: object
+    engagementDrivers:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          properties:
+            driver:
+              type: string
+            subdriver:
+              type: string
+            rank:
+              type: string
+            classification:
+              type: string
+            impact:
+              type: string
+            scores:
+              type: object
+            changes:
+              type: object
+            observations:
+              type: array
+              items:
+                type: object
+            participation:
+              type: object
+            url:
+              type: string
+      type: object
+    engagementSegments:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          properties:
+            size:
+              type: integer
+            links:
+              type: integer
+            classification:
+              type: string
+              enum:
+              - priority
+              - strength
+        relationships:
+          type: object
+          properties:
+            segment:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/resourceIdentifier'
+      type: object

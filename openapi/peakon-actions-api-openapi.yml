@@ -1,0 +1,307 @@
+openapi: 3.0.0
+info:
+  version: 1.1.0
+  title: Peakon Actions API
+  description: The Public Peakon API
+servers:
+- url: https://{subdomain}.peakon.com/api/v1/
+  variables:
+    subdomain:
+      description: Unique subdomain assigned to your Peakon instance.
+      default: api
+tags:
+- description: Retrieving actions
+  name: Actions
+paths:
+  /actions/contexts/{contextId}:
+    get:
+      tags:
+      - Actions
+      summary: Get actions
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: filter[archivedAt]
+        schema:
+          type: string
+          format: date-time
+        in: query
+      - name: filter[completedAt]
+        schema:
+          type: string
+          format: date-time
+        in: query
+      - name: filter[driver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - autonomy
+          - collaboration
+          - communication
+          - engagement
+          - environment
+          - free_opinions
+          - goal_setting
+          - growth
+          - management_support
+          - meaningful_work
+          - organisational_fit
+          - peer_relationship
+          - recognition
+          - reward
+          - reward_recognition
+          - strategy
+          - workload
+        in: query
+      - name: filter[segment.segmentId]
+        schema:
+          type: integer
+        in: query
+      - name: filter[subdriver]
+        schema:
+          type: string
+          enum:
+          - accomplishment
+          - advocacy
+          - alignment
+          - belief
+          - belief_in_action
+          - belief_in_strategy
+          - burnout
+          - career_development
+          - career_path
+          - challenging
+          - collaboration
+          - communication
+          - cross_collaboration
+          - customer_satisfaction
+          - demand_for_skills
+          - distributive_fairness
+          - effective_systems
+          - effective_tools
+          - efficacy
+          - equality
+          - equipment
+          - expectancy_theory
+          - fair_rewards
+          - feel_accomplished
+          - feeling_energised
+          - finding_focus
+          - focus
+          - friendly
+          - goals
+          - health
+          - how
+          - how_to_work
+          - impact
+          - inclusive_culture
+          - informal
+          - interactional_fairness
+          - job_fit
+          - job_security
+          - job_significance
+          - known_expectations
+          - leadership_honesty
+          - learning
+          - learning_from_mistakes
+          - learning_resources
+          - loyalty
+          - manageable_work
+          - manager
+          - manager_support
+          - meaningful_work
+          - meeting_customer_needs
+          - mentoring
+          - mission
+          - multiple_perspectives
+          - one_to_ones
+          - openness
+          - opinions_matter
+          - opportunity
+          - performance
+          - pride_in_work
+          - procedural_fairness
+          - professional_growth
+          - recognition
+          - response
+          - safe_sharing_environment
+          - satisfaction
+          - self_confidence
+          - strategy
+          - support
+          - team
+          - timely_communication
+          - trying_new_things
+          - values
+          - values_fit
+          - when
+          - where
+          - willing_to_help
+          - work_environment
+          - work_meaning
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'actions' objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/actions'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+components:
+  schemas:
+    actions:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            driver:
+              type: string
+              enum:
+              - accomplishment
+              - autonomy
+              - collaboration
+              - communication
+              - engagement
+              - environment
+              - free_opinions
+              - goal_setting
+              - growth
+              - management_support
+              - meaningful_work
+              - organisational_fit
+              - peer_relationship
+              - recognition
+              - reward
+              - reward_recognition
+              - strategy
+              - workload
+            subdriver:
+              type: string
+              enum:
+              - accomplishment
+              - advocacy
+              - alignment
+              - belief
+              - belief_in_action
+              - belief_in_strategy
+              - burnout
+              - career_development
+              - career_path
+              - challenging
+              - collaboration
+              - communication
+              - cross_collaboration
+              - customer_satisfaction
+              - demand_for_skills
+              - distributive_fairness
+              - effective_systems
+              - effective_tools
+              - efficacy
+              - equality
+              - equipment
+              - expectancy_theory
+              - fair_rewards
+              - feel_accomplished
+              - feeling_energised
+              - finding_focus
+              - focus
+              - friendly
+              - goals
+              - health
+              - how
+              - how_to_work
+              - impact
+              - inclusive_culture
+              - informal
+              - interactional_fairness
+              - job_fit
+              - job_security
+              - job_significance
+              - known_expectations
+              - leadership_honesty
+              - learning
+              - learning_from_mistakes
+              - learning_resources
+              - loyalty
+              - manageable_work
+              - manager
+              - manager_support
+              - meaningful_work
+              - meeting_customer_needs
+              - mentoring
+              - mission
+              - multiple_perspectives
+              - one_to_ones
+              - openness
+              - opinions_matter
+              - opportunity
+              - performance
+              - pride_in_work
+              - procedural_fairness
+              - professional_growth
+              - recognition
+              - response
+              - safe_sharing_environment
+              - satisfaction
+              - self_confidence
+              - strategy
+              - support
+              - team
+              - timely_communication
+              - trying_new_things
+              - values
+              - values_fit
+              - when
+              - where
+              - willing_to_help
+              - work_environment
+              - work_meaning
+            group:
+              type: string
+            completedAt:
+              type: string
+              format: date-time
+            archivedAt:
+              type: string
+              format: date-time
+            access:
+              type: string
+              enum:
+              - private
+              - shared
+            dueAt:
+              type: string
+              format: date-time
+            text:
+              type: string
+            notes:
+              type: string
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+      type: object

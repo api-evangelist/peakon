@@ -1,0 +1,104 @@
+openapi: 3.0.0
+info:
+  version: 1.1.0
+  title: Peakon Actions Segments API
+  description: The Public Peakon API
+servers:
+- url: https://{subdomain}.peakon.com/api/v1/
+  variables:
+    subdomain:
+      description: Unique subdomain assigned to your Peakon instance.
+      default: api
+tags:
+- description: Retrieving segments
+  name: Segments
+paths:
+  /segments:
+    get:
+      tags:
+      - Segments
+      summary: Get segments
+      parameters:
+      - name: filter[attributeId]
+        schema:
+          type: integer
+        description: The id of the attribute that is the source of a segment
+        in: query
+      - name: filter[direct]
+        schema:
+          type: boolean
+        description: Segment including only direct reports or all reports
+        in: query
+      - name: filter[managerId]
+        schema:
+          type: integer
+        description: The employeeId of a manager of a segment
+        in: query
+      - name: filter[type]
+        schema:
+          type: string
+          enum:
+          - employee
+          - option
+          - date
+          - number
+        description: The type of attribute that is the source of a segment
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'segments' objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/segments'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+components:
+  schemas:
+    segments:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            identifier:
+              type: string
+            type:
+              type: string
+            logo:
+              type: string
+            standard:
+              type: string
+            benchmarkType:
+              type: string
+            benchmarkId:
+              type: string
+            contextId:
+              type: string
+            name:
+              type: string
+            abbreviation:
+              type: string
+            direct:
+              type: boolean
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+      type: object

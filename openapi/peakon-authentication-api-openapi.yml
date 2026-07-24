@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  version: 1.1.0
+  title: Peakon Actions Authentication API
+  description: The Public Peakon API
+servers:
+- url: https://{subdomain}.peakon.com/api/v1/
+  variables:
+    subdomain:
+      description: Unique subdomain assigned to your Peakon instance.
+      default: api
+tags:
+- description: Authenticating with the API
+  name: Authentication
+paths:
+  /auth/application:
+    post:
+      tags:
+      - Authentication
+      summary: Authenticate application
+      requestBody:
+        description: Application token created in the Integrations section
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                persists:
+                  description: If set to true, the returned session will never expire.
+                  type: boolean
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'bearer_tokens'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/bearerTokens'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+        '404':
+          description: The application integration with token string cannot be found
+components:
+  schemas:
+    bearerTokens:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+          description: The JWT token to use in the Authorization header of subsequent requests
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+      type: object

@@ -1,0 +1,218 @@
+openapi: 3.0.0
+info:
+  version: 1.1.0
+  title: Peakon Actions Scores API
+  description: The Public Peakon API
+servers:
+- url: https://{subdomain}.peakon.com/api/v1/
+  variables:
+    subdomain:
+      description: Unique subdomain assigned to your Peakon instance.
+      default: api
+tags:
+- description: Retrieving scores
+  name: Scores
+paths:
+  /scores/contexts/{contextId}/group/{group}:
+    get:
+      tags:
+      - Scores
+      summary: Get category scores by group
+      description: Get category scores according to group.
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: group
+        required: true
+        description: The name of the category group.
+        schema:
+          type: string
+          enum:
+          - engagement
+          - diversity_inclusion
+          - health_wellbeing
+          - transformation_change
+          - onboarding
+          - exit
+          - covid19
+          - other
+          - environmental_social_governance
+          - ancc_magnet_nursing_excellence
+          - values
+        in: path
+      - name: observations
+        description: Includes observations array in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: participation
+        description: Includes participation in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: interval
+        description: Limit query to a specific date interval, defaults to *quarter*.
+        schema:
+          type: string
+          enum:
+          - month
+          - quarter
+          - year
+          - all
+          - recent
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'category_scores' objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/categoryScores'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+  /scores/contexts/{contextId}/questions/group/{group}:
+    get:
+      tags:
+      - Scores
+      summary: Get question scores by group
+      description: Get question scores according to group.
+      parameters:
+      - name: contextId
+        description: A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.
+        required: true
+        schema:
+          type: string
+        in: path
+      - name: group
+        required: true
+        description: The name of the category group.
+        schema:
+          type: string
+          enum:
+          - engagement
+          - diversity_inclusion
+          - health_wellbeing
+          - transformation_change
+          - onboarding
+          - exit
+          - covid19
+          - other
+          - environmental_social_governance
+          - ancc_magnet_nursing_excellence
+          - values
+        in: path
+      - name: observations
+        description: Includes observations array in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: participation
+        description: Includes participation in the returned object, defaults to *false*.
+        schema:
+          type: boolean
+        in: query
+      - name: interval
+        description: Limit query to a specific date interval, defaults to *quarter*.
+        schema:
+          type: string
+          enum:
+          - month
+          - quarter
+          - year
+          - all
+          - recent
+        in: query
+      - name: includeSubcategories
+        required: false
+        description: Include scores for questions in subcategories.
+        schema:
+          type: boolean
+        in: query
+      security:
+      - jwt: []
+      responses:
+        '200':
+          description: A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'engagement_questions' objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/engagementQuestions'
+                  included:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/resourceIdentifier'
+                    description: An array of included JSONAPI resources
+components:
+  schemas:
+    categoryScores:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            grade:
+              type: string
+            impact:
+              type: string
+            source:
+              type: string
+            scores:
+              type: object
+            observations:
+              type: array
+              items:
+                type: object
+            participation:
+              type: object
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+      type: object
+    engagementQuestions:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            scores:
+              type: object
+            changes:
+              type: object
+            observations:
+              type: object
+            participation:
+              type: object
+            url:
+              type: string
+            relationships:
+              type: object
+      type: object
