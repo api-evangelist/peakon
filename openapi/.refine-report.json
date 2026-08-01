@@ -1,0 +1,28 @@
+{
+  "provider": "peakon",
+  "sources": [
+    "peakon-actions-api-openapi.yml",
+    "peakon-answers-api-openapi.yml",
+    "peakon-audits-api-openapi.yml",
+    "peakon-authentication-api-openapi.yml",
+    "peakon-employees-api-openapi.yml",
+    "peakon-engagement-api-openapi.yml",
+    "peakon-scores-api-openapi.yml",
+    "peakon-segments-api-openapi.yml"
+  ],
+  "outputs": [
+    "peakon-actions-api-openapi.yml",
+    "peakon-answers-api-openapi.yml",
+    "peakon-audits-api-openapi.yml",
+    "peakon-authentication-api-openapi.yml",
+    "peakon-employees-api-openapi.yml",
+    "peakon-engagement-api-openapi.yml",
+    "peakon-scores-api-openapi.yml",
+    "peakon-segments-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

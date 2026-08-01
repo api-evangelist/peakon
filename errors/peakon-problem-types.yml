@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/peakon-openapi-original.json + https://developer.peakon.com/reference
+format: jsonapi
+notes: >-
+  The Peakon API follows the JSON:API specification (https://jsonapi.org). Errors are
+  returned as a top-level `errors` array of JSON:API error objects. The public OpenAPI
+  declares only success plus a small set of error responses per operation; entries below
+  are derived from those declared responses plus the documented JSON:API error envelope.
+envelope:
+  field: errors
+  shape: 'JSON:API error objects: status, code, title, detail, source'
+problems:
+  - status: 200
+    title: "OK"
+    declared_on: ["GET /actions/contexts/{contextId}", "GET /answers/export", "GET /audits/company/{companyId}", "GET /employees", "GET /employees/contexts/{contextId}", "GET /employees/contexts/{contextId}/count"]
+  - status: 204
+    title: "No Content"
+    declared_on: ["DELETE /employees/{employeeId}"]
+  - status: 404
+    title: "Not Found - the requested resource (employee, context, segment) does not exist."
+    declared_on: ["POST /auth/application"]

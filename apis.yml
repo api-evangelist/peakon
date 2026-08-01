@@ -1,8 +1,27 @@
 aid: peakon
 name: Peakon
-description: 'Peakon is a company surfaced as a portfolio company of atomico, balderton-capital and added
-  to the API Evangelist network as a stub for enrichment. Sector: saas. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Peakon (now Workday Peakon Employee Voice) is an employee engagement and experience
+  platform for measuring and improving engagement through continuous surveys, driver
+  analytics, and action-taking. Founded in Copenhagen and backed by Atomico and Balderton
+  Capital, it was acquired by Workday in 2021. Peakon exposes a public REST API (v1.1.0,
+  JSON:API) for reading engagement overviews, drivers, segment and category scores, survey
+  answers, and audits, plus managing employees; it also offers a SCIM 2.0 provisioning API
+  for continuous HRIS-driven user sync. Applications authenticate by exchanging a custom-app
+  access token for a session bearer JWT scoped by per-app permissions.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://files.readme.io/2b612560a84c6544f0ffcaf0abeef8c1da4cd1ec5ac568f569f1b0d4058082db-small-wd-dub-reversed.png
 url: https://raw.githubusercontent.com/api-evangelist/peakon/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -13,16 +32,225 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Saas
-apis: []
+- Employee Engagement
+- Employee Experience
+- HR Tech
+- Surveys
+- People Analytics
+- Workday
+apis:
+- aid: peakon:peakon-actions-api
+  name: Peakon Actions API
+  description: Retrieving actions
+  humanURL: https://developer.peakon.com/
+  baseURL: https://api.peakon.com/api/v1/
+  tags:
+  - Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/peakon-actions-api-openapi.yml
+  - type: Authentication
+    url: authentication/peakon-authentication.yml
+  - type: Conventions
+    url: conventions/peakon-conventions.yml
+  - type: ErrorCatalog
+    url: errors/peakon-problem-types.yml
+  - type: DataModel
+    url: data-model/peakon-data-model.yml
+  - type: Conformance
+    url: conformance/peakon-conformance.yml
+- aid: peakon:peakon-answers-api
+  name: Peakon Answers API
+  description: The Answers API from Peakon — 1 operation(s) for answers.
+  humanURL: https://developer.peakon.com/
+  baseURL: https://api.peakon.com/api/v1/
+  tags:
+  - Answers
+  properties:
+  - type: OpenAPI
+    url: openapi/peakon-answers-api-openapi.yml
+  - type: Authentication
+    url: authentication/peakon-authentication.yml
+  - type: Conventions
+    url: conventions/peakon-conventions.yml
+  - type: ErrorCatalog
+    url: errors/peakon-problem-types.yml
+  - type: DataModel
+    url: data-model/peakon-data-model.yml
+  - type: Conformance
+    url: conformance/peakon-conformance.yml
+- aid: peakon:peakon-audits-api
+  name: Peakon Audits API
+  description: Retrieving company audit log
+  humanURL: https://developer.peakon.com/
+  baseURL: https://api.peakon.com/api/v1/
+  tags:
+  - Audits
+  properties:
+  - type: OpenAPI
+    url: openapi/peakon-audits-api-openapi.yml
+  - type: Authentication
+    url: authentication/peakon-authentication.yml
+  - type: Conventions
+    url: conventions/peakon-conventions.yml
+  - type: ErrorCatalog
+    url: errors/peakon-problem-types.yml
+  - type: DataModel
+    url: data-model/peakon-data-model.yml
+  - type: Conformance
+    url: conformance/peakon-conformance.yml
+- aid: peakon:peakon-authentication-api
+  name: Peakon Authentication API
+  description: Authenticating with the API
+  humanURL: https://developer.peakon.com/
+  baseURL: https://api.peakon.com/api/v1/
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/peakon-authentication-api-openapi.yml
+  - type: Authentication
+    url: authentication/peakon-authentication.yml
+  - type: Conventions
+    url: conventions/peakon-conventions.yml
+  - type: ErrorCatalog
+    url: errors/peakon-problem-types.yml
+  - type: DataModel
+    url: data-model/peakon-data-model.yml
+  - type: Conformance
+    url: conformance/peakon-conformance.yml
+- aid: peakon:peakon-employees-api
+  name: Peakon Employees API
+  description: Manage employees
+  humanURL: https://developer.peakon.com/
+  baseURL: https://api.peakon.com/api/v1/
+  tags:
+  - Employees
+  properties:
+  - type: OpenAPI
+    url: openapi/peakon-employees-api-openapi.yml
+  - type: Authentication
+    url: authentication/peakon-authentication.yml
+  - type: Conventions
+    url: conventions/peakon-conventions.yml
+  - type: ErrorCatalog
+    url: errors/peakon-problem-types.yml
+  - type: DataModel
+    url: data-model/peakon-data-model.yml
+  - type: Conformance
+    url: conformance/peakon-conformance.yml
+- aid: peakon:peakon-engagement-api
+  name: Peakon Engagement API
+  description: Retrieving engagement scores
+  humanURL: https://developer.peakon.com/
+  baseURL: https://api.peakon.com/api/v1/
+  tags:
+  - Engagement
+  properties:
+  - type: OpenAPI
+    url: openapi/peakon-engagement-api-openapi.yml
+  - type: Authentication
+    url: authentication/peakon-authentication.yml
+  - type: Conventions
+    url: conventions/peakon-conventions.yml
+  - type: ErrorCatalog
+    url: errors/peakon-problem-types.yml
+  - type: DataModel
+    url: data-model/peakon-data-model.yml
+  - type: Conformance
+    url: conformance/peakon-conformance.yml
+- aid: peakon:peakon-scores-api
+  name: Peakon Scores API
+  description: Retrieving scores
+  humanURL: https://developer.peakon.com/
+  baseURL: https://api.peakon.com/api/v1/
+  tags:
+  - Scores
+  properties:
+  - type: OpenAPI
+    url: openapi/peakon-scores-api-openapi.yml
+  - type: Authentication
+    url: authentication/peakon-authentication.yml
+  - type: Conventions
+    url: conventions/peakon-conventions.yml
+  - type: ErrorCatalog
+    url: errors/peakon-problem-types.yml
+  - type: DataModel
+    url: data-model/peakon-data-model.yml
+  - type: Conformance
+    url: conformance/peakon-conformance.yml
+- aid: peakon:peakon-segments-api
+  name: Peakon Segments API
+  description: Retrieving segments
+  humanURL: https://developer.peakon.com/
+  baseURL: https://api.peakon.com/api/v1/
+  tags:
+  - Segments
+  properties:
+  - type: OpenAPI
+    url: openapi/peakon-segments-api-openapi.yml
+  - type: Authentication
+    url: authentication/peakon-authentication.yml
+  - type: Conventions
+    url: conventions/peakon-conventions.yml
+  - type: ErrorCatalog
+    url: errors/peakon-problem-types.yml
+  - type: DataModel
+    url: data-model/peakon-data-model.yml
+  - type: Conformance
+    url: conformance/peakon-conformance.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/peakon-agentic-access.yml
 - type: Website
   url: https://www.peakon.com
+- type: DeveloperPortal
+  url: https://developer.peakon.com/
+- type: Documentation
+  url: https://doc.workday.com/peakon/en-us/workday-peakon-employee-voice.html
+- type: APIReference
+  url: https://developer.peakon.com/reference
+- type: GettingStarted
+  url: https://developer.peakon.com/docs/getting-started
+- type: Authentication
+  url: authentication/peakon-authentication.yml
+- type: Conventions
+  url: conventions/peakon-conventions.yml
+- type: ErrorCatalog
+  url: errors/peakon-problem-types.yml
+- type: DataModel
+  url: data-model/peakon-data-model.yml
+- type: Conformance
+  url: conformance/peakon-conformance.yml
+- type: MCPServer
+  url: mcp/peakon-mcp.yml
+- type: LLMsTxt
+  url: llms/peakon-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Lifecycle
+  url: lifecycle/peakon-lifecycle.yml
+- type: StatusPage
+  url: https://status.peakon.com
+- type: DomainSecurity
+  url: security/peakon-domain-security.yml
+- type: Support
+  url: https://support.peakon.com
+- type: GitHubOrganization
+  url: https://github.com/peakon
+- type: Overlay
+  url: overlays/peakon-openapi-overlay.yaml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

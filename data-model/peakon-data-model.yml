@@ -1,0 +1,99 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/peakon-openapi-original.json + https://developer.peakon.com/reference
+notes: >-
+  Entity-relationship graph derived from the public Peakon API OpenAPI (JSON:API resource
+  types) and the endpoint path structure. Most read endpoints are scoped by a `context`
+  (an organizational unit / segment tree node) identified by contextId.
+entities:
+  - name: employee
+    type: employees
+    id_field: employeeId
+    description: A person surveyed in Peakon; created/updated/deleted and synced via SCIM.
+    endpoints:
+      - 'GET /employees'
+      - 'POST /employees'
+      - 'GET /employees/{employeeId}'
+      - 'PATCH /employees/{employeeId}'
+      - 'DELETE /employees/{employeeId}'
+  - name: context
+    type: contexts
+    id_field: contextId
+    description: An organizational context (company, department, segment scope) most read operations are scoped to.
+  - name: segment
+    type: segments
+    id_field: segmentId
+    description: A grouping of employees by attribute value used to slice engagement data.
+    endpoints:
+      - 'GET /segments'
+      - 'GET /engagement/contexts/{contextId}/segments/v2'
+  - name: engagementOverview
+    type: engagementOverviews
+    description: Aggregate engagement score for a company or context.
+    endpoints:
+      - 'GET /engagement/overview'
+      - 'GET /engagement/contexts/{contextId}/overview'
+  - name: engagementDriver
+    type: engagementDrivers
+    id_field: driver
+    description: A named engagement driver (dimension) with per-driver scores.
+    endpoints:
+      - 'GET /engagement/drivers'
+      - 'GET /engagement/drivers/{driver}'
+  - name: categoryScore
+    type: categoryScores
+    description: Category-level scores grouped by an attribute group.
+    endpoints:
+      - 'GET /scores/contexts/{contextId}/group/{group}'
+  - name: engagementQuestion
+    type: engagementQuestions
+    description: Survey question with scores, grouped by attribute group.
+    endpoints:
+      - 'GET /scores/contexts/{contextId}/questions/group/{group}'
+  - name: action
+    type: actions
+    description: Follow-up actions recorded within a context.
+    endpoints:
+      - 'GET /actions/contexts/{contextId}'
+  - name: audit
+    type: audits
+    description: Audit-log entries for a company.
+    endpoints:
+      - 'GET /audits/company/{companyId}'
+  - name: surveyAnswer
+    description: Exported survey answers.
+    endpoints:
+      - 'GET /answers/export'
+relationships:
+  - from: employee
+    to: context
+    kind: belongs_to
+    via: contextId
+  - from: segment
+    to: context
+    kind: belongs_to
+    via: contextId
+  - from: engagementOverview
+    to: context
+    kind: belongs_to
+    via: contextId
+  - from: engagementDriver
+    to: context
+    kind: has_many
+    via: contextId
+  - from: categoryScore
+    to: context
+    kind: belongs_to
+    via: contextId
+  - from: engagementQuestion
+    to: context
+    kind: belongs_to
+    via: contextId
+  - from: action
+    to: context
+    kind: belongs_to
+    via: contextId
+  - from: audit
+    to: company
+    kind: belongs_to
+    via: companyId

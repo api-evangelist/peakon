@@ -1,0 +1,32 @@
+# Peakon Documentation
+
+> Peakon is the world's leading platform for measuring and improving Employee Engagement.
+
+## Guides
+- [Building a SCIM 2.0 API Connector](https://developer.peakon.com/docs/building-a-scim-20-api-connector.md)
+
+## API Reference
+- [Get actions](https://developer.peakon.com/reference/get_actions-contexts-contextid.md)
+- [Get audits](https://developer.peakon.com/reference/get_audits-company-companyid.md)
+- [Authenticate application](https://developer.peakon.com/reference/post_auth-application.md)
+- [Get employees](https://developer.peakon.com/reference/get_employees.md)
+- [Create employee](https://developer.peakon.com/reference/post_employees.md)
+- [Get employees for context](https://developer.peakon.com/reference/get_employees-contexts-contextid.md)
+- [Get employee count](https://developer.peakon.com/reference/get_employees-count.md)
+- [Get employee count for context](https://developer.peakon.com/reference/get_employees-contexts-contextid-count.md)
+- [Get employee](https://developer.peakon.com/reference/get_employees-employeeid.md)
+- [Update employee](https://developer.peakon.com/reference/patch_employees-employeeid.md)
+- [Delete employee](https://developer.peakon.com/reference/delete_employees-employeeid.md)
+- [Get overview](https://developer.peakon.com/reference/get_engagement-overview.md): Return the engagement overview for the entire company.
+- [Get overview for context](https://developer.peakon.com/reference/get_engagement-contexts-contextid-overview.md): Return the engagement overview for the specified context.
+- [Get for drivers](https://developer.peakon.com/reference/get_engagement-drivers.md): Return the engagement details per driver for the entire company.
+- [Get for drivers for context](https://developer.peakon.com/reference/get_engagement-contexts-contextid-drivers.md): Return the engagement details per driver for the given context.
+- [Get by driver](https://developer.peakon.com/reference/get_engagement-drivers-driver.md): Return the engagement details for the given driver for the entire company.
+- [Get by driver for context](https://developer.peakon.com/reference/get_engagement-contexts-contextid-drivers-driver.md): Return the engagement details for the given driver for the given context.
+- [Get segments](https://developer.peakon.com/reference/get_engagement-contexts-contextid-segments-v2.md): Obtain a list of segments. The id of each segment can be used to get full engagement details using other methods in this area.
+- [Get segments groups](https://developer.peakon.com/reference/get_engagement-contexts-contextid-segments-groups.md): Return the number of segments with engagement data grouped by attribute.
+- [Get segments for attribute](https://developer.peakon.com/reference/get_engagement-contexts-contextid-segments-v2-attributes-attributeid.md): Return the segments with engagement data within the given attribute.
+- [Get category scores by group](https://developer.peakon.com/reference/get_scores-contexts-contextid-group-group.md): Get category scores according to group.
+- [Get question scores by group](https://developer.peakon.com/reference/get_scores-contexts-contextid-questions-group-group.md): Get question scores according to group.
+- [Get segments](https://developer.peakon.com/reference/get_segments.md)
+- [Get survey answers](https://developer.peakon.com/reference/get_answers-export.md)

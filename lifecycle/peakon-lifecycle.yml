@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://developer.peakon.com/reference,
+  https://status.peakon.com,
+  openapi/peakon-openapi-original.json
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version: 1.1.0
+  base: https://{subdomain}.peakon.com/api/v1/
+  docs: https://developer.peakon.com/docs/getting-started
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No public deprecation policy or RFC 8594 Sunset/Deprecation header support found.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.peakon.com
+deprecated_operations: []
+notes: >-
+  Peakon is now part of Workday (Workday Peakon Employee Voice); product documentation
+  lives at doc.workday.com/peakon while the developer/API reference remains at
+  developer.peakon.com. The public API is versioned in the URI path (/api/v1) with an
+  OpenAPI document version of 1.1.0.

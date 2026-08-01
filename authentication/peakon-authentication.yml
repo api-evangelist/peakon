@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.peakon.com/docs/getting-started
+docs: https://developer.peakon.com/docs/getting-started
+summary:
+  types: [http]
+  scheme: bearer
+  bearer_format: JWT
+  api_key_in: []
+  oauth2_flows: []
+model: >-
+  Two-step application authentication. A developer creates a Custom App in the Peakon
+  dashboard (Integrations > Custom Apps), selecting a set of permissions that scope the
+  app to specific areas of the API. Creating the app yields a long-lived application
+  access token (shown once, treated as a secret). The application exchanges that token
+  for a short-lived session token (JWT) by POSTing it to /auth/application; the JWT is
+  then sent as `Authorization: Bearer <jwt>` on all subsequent API calls. Passing
+  `persists: true` on the exchange returns a session that never expires.
+schemes:
+  - name: jwt
+    type: http
+    scheme: bearer
+    bearer_format: JWT
+    description: >-
+      Session bearer token returned by POST /auth/application as a JSON:API resource of
+      type `bearer_tokens`. Applied to every operation except the auth exchange itself.
+    applied_to: all operations except POST /auth/application
+    sources: [openapi/peakon-openapi-original.json]
+token_exchange:
+  operation: POST /auth/application
+  request: { token: <application access token>, persists: <bool> }
+  response: JSON:API resource of type bearer_tokens (id = the JWT)
+permissions:
+  model: per-application permission areas selected at app-creation time
+  guidance: >-
+    Grant as few permissions as possible; each permission grants access to one area of
+    the API. Peakon does not expose an OAuth2 scope endpoint - permissions are chosen in
+    the dashboard, not requested via an OAuth flow.
+scim:
+  note: >-
+    A separate SCIM 2.0 provisioning API (base https://{subdomain}.peakon.com/api/scim/v2)
+    also uses Bearer token authentication, with a token obtained from the Employee
+    Provisioning integration.
+  docs: https://developer.peakon.com/docs/building-a-scim-20-api-connector

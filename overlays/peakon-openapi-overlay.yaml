@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Peakon API
+  version: 1.0.0
+extends: openapi/peakon-openapi-original.json
+# Non-destructive enhancements captured by the API Evangelist enrichment pipeline.
+# The upstream ReadMe-hosted reference strips operationIds and does not define the
+# referenced `jwt` security scheme in components; both are supplied here as an overlay
+# so derived artifacts (MCP, skills) can bind stable identifiers without mutating the spec.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 3
+      x-apievangelist-notes: Reconstructed from developer.peakon.com per-endpoint OpenAPI slices (2026-07-20).
+  - target: $.components
+    update:
+      securitySchemes:
+        jwt:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+          description: >-
+            Session bearer token (JWT) obtained by POSTing an application token to
+            /auth/application. Sent as Authorization Bearer header on all subsequent calls.

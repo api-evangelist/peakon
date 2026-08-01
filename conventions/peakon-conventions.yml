@@ -1,0 +1,58 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.peakon.com/reference + openapi/peakon-openapi-original.json
+summary: >-
+  Cross-cutting request/response semantics for the public Peakon API (v1.1.0). The API
+  is built on the JSON:API specification: resources carry `type` + `id`, data is wrapped
+  in a top-level `data` member, and related resources are returned via `included`.
+media_type:
+  request: application/json
+  response: application/vnd.api+json (JSON:API)
+  standard: https://jsonapi.org/format/
+authentication:
+  style: bearer-jwt
+  detail: See authentication/peakon-authentication.yml - session JWT via POST /auth/application.
+resource_model:
+  format: json:api
+  shape: '{ data: { type, id, attributes, relationships }, included: [...] }'
+  identifiers: JSON:API resource objects keyed by { type, id } (e.g. employees, segments, contexts)
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header or parameter is documented in the reference or present in
+    the OpenAPI. Mutating operations (POST/PATCH/DELETE on /employees) are not advertised
+    as idempotent beyond the natural idempotence of PATCH/DELETE by id.
+pagination:
+  style: json:api
+  detail: >-
+    JSON:API-style paging. List endpoints accept page parameters; count endpoints
+    (/employees/count) return totals separately. Exact page parameter names are not
+    enumerated in the public per-endpoint reference.
+filtering:
+  style: json:api
+  detail: >-
+    List endpoints accept `filter[...]` query parameters (e.g. filter[account.email],
+    filter[accountId], filter[admin], filter[employeeId]) per the JSON:API filtering
+    convention.
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version: 1.1.0
+  base: https://{subdomain}.peakon.com/api/v1/
+error_envelope:
+  format: json:api
+  field: errors
+  shape: 'top-level `errors` array of JSON:API error objects'
+  cross_ref: errors/peakon-problem-types.yml
+rate_limiting:
+  documented: false
+  notes: No public rate-limit reference page or rate-limit response headers are documented.
+tenancy:
+  model: subdomain
+  detail: >-
+    Each customer has a unique subdomain; the API host is https://{subdomain}.peakon.com
+    (default subdomain `api`). Data is scoped to the authenticated company/subdomain.
+cross_references:
+  authentication: authentication/peakon-authentication.yml
+  errors: errors/peakon-problem-types.yml
+  lifecycle: lifecycle/peakon-lifecycle.yml

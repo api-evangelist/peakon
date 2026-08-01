@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://developer.peakon.com/reference,
+  https://developer.peakon.com/docs/building-a-scim-20-api-connector,
+  openapi/peakon-openapi-original.json
+standards:
+  - id: jsonapi-1.0
+    conforms: true
+    evidence: >-
+      API self-describes as JSON:API; responses are JSON:API resource documents
+      (type/id/attributes/relationships/included) and auth returns a resource of type
+      bearer_tokens per jsonapi.org/format.
+  - id: scim-2.0
+    conforms: true
+    evidence: >-
+      Peakon exposes a SCIM 2.0 provisioning API (/api/scim/v2) supporting
+      provisioning/update/de-provisioning of users; documented in the SCIM 2.0 API
+      Connector guide and supported out-of-the-box by Okta, Azure AD, Google.
+    docs: https://developer.peakon.com/docs/building-a-scim-20-api-connector
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No OAuth2 securityScheme is declared; authentication is an application-token to
+      bearer-JWT exchange, not an OAuth authorization flow.
+  - id: openid-connect
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use the JSON:API error envelope, not application/problem+json.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No documented Sunset/Deprecation header support.

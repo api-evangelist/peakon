@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/peakon-openapi-original.json + https://developer.peakon.com/reference
+skills:
+  - file: peakon-authenticate.md
+    name: Authenticate with the Peakon API
+    api: openapi/peakon-openapi-original.json
+    operations: ['POST /auth/application']
+  - file: peakon-pull-engagement.md
+    name: Pull engagement scores from Peakon
+    api: openapi/peakon-openapi-original.json
+    operations:
+      - GET /engagement/overview
+      - GET /engagement/contexts/{contextId}/overview
+      - GET /engagement/drivers
+      - GET /engagement/contexts/{contextId}/segments/v2
+      - GET /scores/contexts/{contextId}/group/{group}
+  - file: peakon-sync-employees.md
+    name: Sync employees into Peakon
+    api: openapi/peakon-openapi-original.json
+    operations:
+      - GET /employees
+      - POST /employees
+      - PATCH /employees/{employeeId}
+      - DELETE /employees/{employeeId}

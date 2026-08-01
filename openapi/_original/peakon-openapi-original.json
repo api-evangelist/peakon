@@ -1,0 +1,4098 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.1.0",
+    "title": "Peakon API",
+    "description": "The Public Peakon API"
+  },
+  "servers": [
+    {
+      "url": "https://{subdomain}.peakon.com/api/v1/",
+      "variables": {
+        "subdomain": {
+          "description": "Unique subdomain assigned to your Peakon instance.",
+          "default": "api"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "description": "Retrieving actions",
+      "name": "Actions"
+    },
+    {
+      "description": "Retrieving company audit log",
+      "name": "Audits"
+    },
+    {
+      "description": "Authenticating with the API",
+      "name": "Authentication"
+    },
+    {
+      "description": "Manage employees",
+      "name": "Employees"
+    },
+    {
+      "description": "Retrieving engagement scores",
+      "name": "Engagement"
+    },
+    {
+      "description": "Retrieving scores",
+      "name": "Scores"
+    },
+    {
+      "description": "Retrieving segments",
+      "name": "Segments"
+    }
+  ],
+  "paths": {
+    "/actions/contexts/{contextId}": {
+      "get": {
+        "tags": [
+          "Actions"
+        ],
+        "summary": "Get actions",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "filter[archivedAt]",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[completedAt]",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[driver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "autonomy",
+                "collaboration",
+                "communication",
+                "engagement",
+                "environment",
+                "free_opinions",
+                "goal_setting",
+                "growth",
+                "management_support",
+                "meaningful_work",
+                "organisational_fit",
+                "peer_relationship",
+                "recognition",
+                "reward",
+                "reward_recognition",
+                "strategy",
+                "workload"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[segment.segmentId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[subdriver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "advocacy",
+                "alignment",
+                "belief",
+                "belief_in_action",
+                "belief_in_strategy",
+                "burnout",
+                "career_development",
+                "career_path",
+                "challenging",
+                "collaboration",
+                "communication",
+                "cross_collaboration",
+                "customer_satisfaction",
+                "demand_for_skills",
+                "distributive_fairness",
+                "effective_systems",
+                "effective_tools",
+                "efficacy",
+                "equality",
+                "equipment",
+                "expectancy_theory",
+                "fair_rewards",
+                "feel_accomplished",
+                "feeling_energised",
+                "finding_focus",
+                "focus",
+                "friendly",
+                "goals",
+                "health",
+                "how",
+                "how_to_work",
+                "impact",
+                "inclusive_culture",
+                "informal",
+                "interactional_fairness",
+                "job_fit",
+                "job_security",
+                "job_significance",
+                "known_expectations",
+                "leadership_honesty",
+                "learning",
+                "learning_from_mistakes",
+                "learning_resources",
+                "loyalty",
+                "manageable_work",
+                "manager",
+                "manager_support",
+                "meaningful_work",
+                "meeting_customer_needs",
+                "mentoring",
+                "mission",
+                "multiple_perspectives",
+                "one_to_ones",
+                "openness",
+                "opinions_matter",
+                "opportunity",
+                "performance",
+                "pride_in_work",
+                "procedural_fairness",
+                "professional_growth",
+                "recognition",
+                "response",
+                "safe_sharing_environment",
+                "satisfaction",
+                "self_confidence",
+                "strategy",
+                "support",
+                "team",
+                "timely_communication",
+                "trying_new_things",
+                "values",
+                "values_fit",
+                "when",
+                "where",
+                "willing_to_help",
+                "work_environment",
+                "work_meaning"
+              ]
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'actions' objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/actions"
+                      }
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/audits/company/{companyId}": {
+      "get": {
+        "tags": [
+          "Audits"
+        ],
+        "summary": "Get audits",
+        "parameters": [
+          {
+            "name": "companyId",
+            "required": true,
+            "description": "The id of the company",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "path"
+          },
+          {
+            "name": "filter[createdAt]",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Used to filter events based on dates. The operator should follow the value. Operators can f.ex. be $gte for \"Greater than or equal\" and $lte for \"Less than or equal\".",
+            "example": "2019-11-04$gte",
+            "in": "query"
+          },
+          {
+            "name": "filter[event]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accepted",
+                "acknowledged",
+                "actionsReminder",
+                "activated",
+                "added",
+                "addedAttribute",
+                "addedCompanySubdomain",
+                "addedDomain",
+                "anonymized",
+                "answer",
+                "archived",
+                "assignedQuestions",
+                "authentication",
+                "blocked",
+                "bounced",
+                "changedRole",
+                "clear",
+                "clearedComplaints",
+                "cleared_bounces",
+                "close",
+                "complained",
+                "completed",
+                "confirmationRequest",
+                "confirmed",
+                "consent",
+                "correlated",
+                "create",
+                "created",
+                "createdCompanyShard",
+                "dailySent",
+                "dataObliterateStarted",
+                "delete",
+                "deleted",
+                "deletedComment",
+                "deletedCompanyShard",
+                "deletedCompanySubdomain",
+                "deletedInput",
+                "disabled",
+                "employeeAttributesChanged",
+                "enabled",
+                "ended",
+                "exceeded",
+                "expired",
+                "frequenciesUpdated",
+                "generateAuthenticationCode",
+                "generatedAgentToken",
+                "generatedLogHash",
+                "hard-close",
+                "hookDisabled",
+                "hookEnabled",
+                "hookFailed",
+                "hookFired",
+                "hookPaused",
+                "importStarted",
+                "imported",
+                "incompleted",
+                "lowParticipation",
+                "markAllAsRead",
+                "markAllAsViewed",
+                "markAsUnviewed",
+                "markAsViewed",
+                "markedSensitive",
+                "migrated",
+                "notified",
+                "nps",
+                "obliterated",
+                "open",
+                "passwordChange",
+                "passwordRecovery",
+                "presentation",
+                "push",
+                "reasonSet",
+                "recalculated",
+                "recoveryRequest",
+                "recurred",
+                "regeneratedCode",
+                "regenerated_token",
+                "rejected",
+                "remind",
+                "reminded",
+                "removedAttribute",
+                "removedDomain",
+                "reopen",
+                "resend",
+                "reset",
+                "resetQueued",
+                "responseRequest",
+                "restored",
+                "resubscribed",
+                "retire",
+                "revealIdentity",
+                "samlLoginRequest",
+                "samlLogoutRequest",
+                "scheduleLowParticipation",
+                "scheduleRemind",
+                "scheduled",
+                "segmentationDisabled",
+                "segmentationEnabled",
+                "send",
+                "sendLowParticipation",
+                "sent",
+                "set",
+                "signup_consent_given",
+                "smsReceipt",
+                "smsReceived",
+                "smsSent",
+                "statusUpdated",
+                "stripped",
+                "suggested",
+                "switch",
+                "transferComplete",
+                "transferStart",
+                "twofactorRegisterCompleted",
+                "twofactorRegisterStarted",
+                "twofactorRemoved",
+                "twofactorSms",
+                "twofactorVerified",
+                "unarchived",
+                "unassignedQuestions",
+                "unblocked",
+                "uncompleted",
+                "unmarkedSensitive",
+                "unsubscribed",
+                "upcomingRound",
+                "update",
+                "updated",
+                "updatedPrimaryCompanySubdomain",
+                "upgrade",
+                "upserted",
+                "useAuthenticationCode",
+                "verificationStatusChanged",
+                "withdrawn"
+              ]
+            },
+            "description": "The event to filter the audits by. Some events will not be available for 3rd party access.",
+            "in": "query"
+          },
+          {
+            "name": "filter[objectType]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Account",
+                "AccountSettings",
+                "Action",
+                "ActionItem",
+                "ActionRejection",
+                "Answer",
+                "AnswerTopic",
+                "AppIntegration",
+                "Application",
+                "Attribute",
+                "AttributeHierarchy",
+                "AttributeLink",
+                "AttributeOption",
+                "AttributeRange",
+                "AttributeTreeNode",
+                "Bookmark",
+                "Branding",
+                "Category",
+                "Comment",
+                "CommentSemanticSearchFeedback",
+                "Company",
+                "CompanyAction",
+                "CompanyBenchmarkVersion",
+                "CompanyResource",
+                "CompanySettings",
+                "Consultant",
+                "Conversation",
+                "ConversationMessage",
+                "CustomConsent",
+                "CustomConsentAccept",
+                "CustomSenderDomain",
+                "DenylistedTopic",
+                "Device",
+                "Employee",
+                "EmployeeAttribute",
+                "ExternalMetric",
+                "ExternalMetricObservation",
+                "FeatureFlip",
+                "Feedback",
+                "FeedbackRecipient",
+                "Group",
+                "GroupMember",
+                "MailDomain",
+                "Notification",
+                "NotificationSettings",
+                "Phone",
+                "PriorityDriver",
+                "PrioritySegment",
+                "Question",
+                "QuestionRule",
+                "Response",
+                "Round",
+                "SAMLConfiguration",
+                "Schedule",
+                "Segment",
+                "SegmentLimit",
+                "SegmentLink",
+                "SegmentManager",
+                "SemanticTag",
+                "SemanticTagFeedback",
+                "SensitiveComment",
+                "SensitiveConcept",
+                "SensitiveKeyword",
+                "Session",
+                "Share",
+                "TeamSuggestion",
+                "TestCompany",
+                "Topic",
+                "TopicFeedback",
+                "Value",
+                "Vote"
+              ]
+            },
+            "description": "The type of object to filter the audits by. Some types of objects will not be available for 3rd party access.",
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'audits' objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/audits"
+                      }
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/application": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Authenticate application",
+        "requestBody": {
+          "description": "Application token created in the Integrations section",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "persists": {
+                    "description": "If set to true, the returned session will never expire.",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'bearer_tokens'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/bearerTokens"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The application integration with token string cannot be found"
+          }
+        }
+      }
+    },
+    "/employees": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "summary": "Get employees",
+        "parameters": [
+          {
+            "name": "filter[account.email]",
+            "schema": {
+              "type": "string"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[accountId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[admin]",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[employeeId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[manager]",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'employees' objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/employees"
+                      }
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Employees"
+        ],
+        "summary": "Create employee",
+        "parameters": [],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/employees"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employees/contexts/{contextId}": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "summary": "Get employees for context",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "filter[account.email]",
+            "schema": {
+              "type": "string"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[accountId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[admin]",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[employeeId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[manager]",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/employees"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employees/count": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "summary": "Get employee count",
+        "parameters": [
+          {
+            "name": "filter[account.email]",
+            "schema": {
+              "type": "string"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[accountId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[admin]",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[employeeId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[manager]",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "The total number of employees in the company"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employees/contexts/{contextId}/count": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "summary": "Get employee count for context",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "filter[account.email]",
+            "schema": {
+              "type": "string"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[accountId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[admin]",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[employeeId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[manager]",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "The total number of employees in the given context"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employees/{employeeId}": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "parameters": [
+          {
+            "name": "employeeId",
+            "required": true,
+            "description": "The id of the employee",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get employee",
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/employees"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Employees"
+        ],
+        "parameters": [
+          {
+            "name": "employeeId",
+            "required": true,
+            "description": "The id of the employee",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Update employee",
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/employees"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Employees"
+        ],
+        "parameters": [
+          {
+            "name": "employeeId",
+            "required": true,
+            "description": "The id of the employee",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Delete employee",
+        "responses": {
+          "204": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/engagement/overview": {
+      "get": {
+        "tags": [
+          "Engagement"
+        ],
+        "summary": "Get overview",
+        "description": "Return the engagement overview for the entire company.",
+        "parameters": [
+          {
+            "name": "observations",
+            "description": "Includes observations array in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "participation",
+            "description": "Includes participation in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "interval",
+            "description": "Limit query to a specific date interval, defaults to *quarter*.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "month",
+                "quarter",
+                "year",
+                "all",
+                "recent"
+              ]
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_overviews'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/engagementOverviews"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/engagement/contexts/{contextId}/overview": {
+      "get": {
+        "tags": [
+          "Engagement"
+        ],
+        "summary": "Get overview for context",
+        "description": "Return the engagement overview for the specified context.",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "observations",
+            "description": "Includes observations array in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "participation",
+            "description": "Includes participation in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "interval",
+            "description": "Limit query to a specific date interval, defaults to *quarter*.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "month",
+                "quarter",
+                "year",
+                "all",
+                "recent"
+              ]
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_overviews'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/engagementOverviews"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/engagement/drivers": {
+      "get": {
+        "tags": [
+          "Engagement"
+        ],
+        "summary": "Get for drivers",
+        "description": "Return the engagement details per driver for the entire company.",
+        "parameters": [
+          {
+            "name": "filter[employee.segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\".",
+            "example": "22$contains",
+            "in": "query"
+          },
+          {
+            "name": "filter[question.driver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "autonomy",
+                "collaboration",
+                "communication",
+                "engagement",
+                "environment",
+                "free_opinions",
+                "goal_setting",
+                "growth",
+                "management_support",
+                "meaningful_work",
+                "organisational_fit",
+                "peer_relationship",
+                "recognition",
+                "reward",
+                "reward_recognition",
+                "strategy",
+                "workload"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.subdriver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "advocacy",
+                "alignment",
+                "belief",
+                "belief_in_action",
+                "belief_in_strategy",
+                "burnout",
+                "career_development",
+                "career_path",
+                "challenging",
+                "collaboration",
+                "communication",
+                "cross_collaboration",
+                "customer_satisfaction",
+                "demand_for_skills",
+                "distributive_fairness",
+                "effective_systems",
+                "effective_tools",
+                "efficacy",
+                "equality",
+                "equipment",
+                "expectancy_theory",
+                "fair_rewards",
+                "feel_accomplished",
+                "feeling_energised",
+                "finding_focus",
+                "focus",
+                "friendly",
+                "goals",
+                "health",
+                "how",
+                "how_to_work",
+                "impact",
+                "inclusive_culture",
+                "informal",
+                "interactional_fairness",
+                "job_fit",
+                "job_security",
+                "job_significance",
+                "known_expectations",
+                "leadership_honesty",
+                "learning",
+                "learning_from_mistakes",
+                "learning_resources",
+                "loyalty",
+                "manageable_work",
+                "manager",
+                "manager_support",
+                "meaningful_work",
+                "meeting_customer_needs",
+                "mentoring",
+                "mission",
+                "multiple_perspectives",
+                "one_to_ones",
+                "openness",
+                "opinions_matter",
+                "opportunity",
+                "performance",
+                "pride_in_work",
+                "procedural_fairness",
+                "professional_growth",
+                "recognition",
+                "response",
+                "safe_sharing_environment",
+                "satisfaction",
+                "self_confidence",
+                "strategy",
+                "support",
+                "team",
+                "timely_communication",
+                "trying_new_things",
+                "values",
+                "values_fit",
+                "when",
+                "where",
+                "willing_to_help",
+                "work_environment",
+                "work_meaning"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.valueId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[round.type]",
+            "schema": {
+              "type": "string",
+              "default": "automatic",
+              "enum": [
+                "automatic",
+                "test"
+              ]
+            },
+            "description": "The type of rounds to include data for",
+            "in": "query"
+          },
+          {
+            "name": "observations",
+            "description": "Includes observations array in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "participation",
+            "description": "Includes participation in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "interval",
+            "description": "Limit query to a specific date interval, defaults to *quarter*.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "month",
+                "quarter",
+                "year",
+                "all",
+                "recent"
+              ]
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'engagement_drivers' objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/engagementDrivers"
+                      }
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/engagement/contexts/{contextId}/drivers": {
+      "get": {
+        "tags": [
+          "Engagement"
+        ],
+        "summary": "Get for drivers for context",
+        "description": "Return the engagement details per driver for the given context.",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "filter[employee.segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\".",
+            "example": "22$contains",
+            "in": "query"
+          },
+          {
+            "name": "filter[question.driver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "autonomy",
+                "collaboration",
+                "communication",
+                "engagement",
+                "environment",
+                "free_opinions",
+                "goal_setting",
+                "growth",
+                "management_support",
+                "meaningful_work",
+                "organisational_fit",
+                "peer_relationship",
+                "recognition",
+                "reward",
+                "reward_recognition",
+                "strategy",
+                "workload"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.subdriver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "advocacy",
+                "alignment",
+                "belief",
+                "belief_in_action",
+                "belief_in_strategy",
+                "burnout",
+                "career_development",
+                "career_path",
+                "challenging",
+                "collaboration",
+                "communication",
+                "cross_collaboration",
+                "customer_satisfaction",
+                "demand_for_skills",
+                "distributive_fairness",
+                "effective_systems",
+                "effective_tools",
+                "efficacy",
+                "equality",
+                "equipment",
+                "expectancy_theory",
+                "fair_rewards",
+                "feel_accomplished",
+                "feeling_energised",
+                "finding_focus",
+                "focus",
+                "friendly",
+                "goals",
+                "health",
+                "how",
+                "how_to_work",
+                "impact",
+                "inclusive_culture",
+                "informal",
+                "interactional_fairness",
+                "job_fit",
+                "job_security",
+                "job_significance",
+                "known_expectations",
+                "leadership_honesty",
+                "learning",
+                "learning_from_mistakes",
+                "learning_resources",
+                "loyalty",
+                "manageable_work",
+                "manager",
+                "manager_support",
+                "meaningful_work",
+                "meeting_customer_needs",
+                "mentoring",
+                "mission",
+                "multiple_perspectives",
+                "one_to_ones",
+                "openness",
+                "opinions_matter",
+                "opportunity",
+                "performance",
+                "pride_in_work",
+                "procedural_fairness",
+                "professional_growth",
+                "recognition",
+                "response",
+                "safe_sharing_environment",
+                "satisfaction",
+                "self_confidence",
+                "strategy",
+                "support",
+                "team",
+                "timely_communication",
+                "trying_new_things",
+                "values",
+                "values_fit",
+                "when",
+                "where",
+                "willing_to_help",
+                "work_environment",
+                "work_meaning"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.valueId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[round.type]",
+            "schema": {
+              "type": "string",
+              "default": "automatic",
+              "enum": [
+                "automatic",
+                "test"
+              ]
+            },
+            "description": "The type of rounds to include data for",
+            "in": "query"
+          },
+          {
+            "name": "observations",
+            "description": "Includes observations array in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "participation",
+            "description": "Includes participation in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "interval",
+            "description": "Limit query to a specific date interval, defaults to *quarter*.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "month",
+                "quarter",
+                "year",
+                "all",
+                "recent"
+              ]
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'engagement_drivers' objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/engagementDrivers"
+                      }
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/engagement/drivers/{driver}": {
+      "get": {
+        "tags": [
+          "Engagement"
+        ],
+        "summary": "Get by driver",
+        "description": "Return the engagement details for the given driver for the entire company.",
+        "parameters": [
+          {
+            "name": "driver",
+            "required": true,
+            "description": "One of 18 supported engagement drivers",
+            "schema": {
+              "enum": [
+                "accomplishment",
+                "autonomy",
+                "collaboration",
+                "communication",
+                "engagement",
+                "environment",
+                "free_opinions",
+                "goal_setting",
+                "growth",
+                "management_support",
+                "meaningful_work",
+                "organisational_fit",
+                "peer_relationship",
+                "recognition",
+                "reward",
+                "reward_recognition",
+                "strategy",
+                "workload"
+              ]
+            },
+            "in": "path"
+          },
+          {
+            "name": "filter[employee.segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\".",
+            "example": "22$contains",
+            "in": "query"
+          },
+          {
+            "name": "filter[question.driver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "autonomy",
+                "collaboration",
+                "communication",
+                "engagement",
+                "environment",
+                "free_opinions",
+                "goal_setting",
+                "growth",
+                "management_support",
+                "meaningful_work",
+                "organisational_fit",
+                "peer_relationship",
+                "recognition",
+                "reward",
+                "reward_recognition",
+                "strategy",
+                "workload"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.subdriver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "advocacy",
+                "alignment",
+                "belief",
+                "belief_in_action",
+                "belief_in_strategy",
+                "burnout",
+                "career_development",
+                "career_path",
+                "challenging",
+                "collaboration",
+                "communication",
+                "cross_collaboration",
+                "customer_satisfaction",
+                "demand_for_skills",
+                "distributive_fairness",
+                "effective_systems",
+                "effective_tools",
+                "efficacy",
+                "equality",
+                "equipment",
+                "expectancy_theory",
+                "fair_rewards",
+                "feel_accomplished",
+                "feeling_energised",
+                "finding_focus",
+                "focus",
+                "friendly",
+                "goals",
+                "health",
+                "how",
+                "how_to_work",
+                "impact",
+                "inclusive_culture",
+                "informal",
+                "interactional_fairness",
+                "job_fit",
+                "job_security",
+                "job_significance",
+                "known_expectations",
+                "leadership_honesty",
+                "learning",
+                "learning_from_mistakes",
+                "learning_resources",
+                "loyalty",
+                "manageable_work",
+                "manager",
+                "manager_support",
+                "meaningful_work",
+                "meeting_customer_needs",
+                "mentoring",
+                "mission",
+                "multiple_perspectives",
+                "one_to_ones",
+                "openness",
+                "opinions_matter",
+                "opportunity",
+                "performance",
+                "pride_in_work",
+                "procedural_fairness",
+                "professional_growth",
+                "recognition",
+                "response",
+                "safe_sharing_environment",
+                "satisfaction",
+                "self_confidence",
+                "strategy",
+                "support",
+                "team",
+                "timely_communication",
+                "trying_new_things",
+                "values",
+                "values_fit",
+                "when",
+                "where",
+                "willing_to_help",
+                "work_environment",
+                "work_meaning"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.valueId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[round.type]",
+            "schema": {
+              "type": "string",
+              "default": "automatic",
+              "enum": [
+                "automatic",
+                "test"
+              ]
+            },
+            "description": "The type of rounds to include data for",
+            "in": "query"
+          },
+          {
+            "name": "observations",
+            "description": "Includes observations array in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "participation",
+            "description": "Includes participation in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "interval",
+            "description": "Limit query to a specific date interval, defaults to *quarter*.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "month",
+                "quarter",
+                "year",
+                "all",
+                "recent"
+              ]
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_drivers'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/engagementDrivers"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/engagement/contexts/{contextId}/drivers/{driver}": {
+      "get": {
+        "tags": [
+          "Engagement"
+        ],
+        "summary": "Get by driver for context",
+        "description": "Return the engagement details for the given driver for the given context.",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "driver",
+            "required": true,
+            "description": "One of 18 supported engagement drivers",
+            "schema": {
+              "enum": [
+                "accomplishment",
+                "autonomy",
+                "collaboration",
+                "communication",
+                "engagement",
+                "environment",
+                "free_opinions",
+                "goal_setting",
+                "growth",
+                "management_support",
+                "meaningful_work",
+                "organisational_fit",
+                "peer_relationship",
+                "recognition",
+                "reward",
+                "reward_recognition",
+                "strategy",
+                "workload"
+              ]
+            },
+            "in": "path"
+          },
+          {
+            "name": "filter[employee.segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\".",
+            "example": "22$contains",
+            "in": "query"
+          },
+          {
+            "name": "filter[question.driver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "autonomy",
+                "collaboration",
+                "communication",
+                "engagement",
+                "environment",
+                "free_opinions",
+                "goal_setting",
+                "growth",
+                "management_support",
+                "meaningful_work",
+                "organisational_fit",
+                "peer_relationship",
+                "recognition",
+                "reward",
+                "reward_recognition",
+                "strategy",
+                "workload"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.subdriver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "advocacy",
+                "alignment",
+                "belief",
+                "belief_in_action",
+                "belief_in_strategy",
+                "burnout",
+                "career_development",
+                "career_path",
+                "challenging",
+                "collaboration",
+                "communication",
+                "cross_collaboration",
+                "customer_satisfaction",
+                "demand_for_skills",
+                "distributive_fairness",
+                "effective_systems",
+                "effective_tools",
+                "efficacy",
+                "equality",
+                "equipment",
+                "expectancy_theory",
+                "fair_rewards",
+                "feel_accomplished",
+                "feeling_energised",
+                "finding_focus",
+                "focus",
+                "friendly",
+                "goals",
+                "health",
+                "how",
+                "how_to_work",
+                "impact",
+                "inclusive_culture",
+                "informal",
+                "interactional_fairness",
+                "job_fit",
+                "job_security",
+                "job_significance",
+                "known_expectations",
+                "leadership_honesty",
+                "learning",
+                "learning_from_mistakes",
+                "learning_resources",
+                "loyalty",
+                "manageable_work",
+                "manager",
+                "manager_support",
+                "meaningful_work",
+                "meeting_customer_needs",
+                "mentoring",
+                "mission",
+                "multiple_perspectives",
+                "one_to_ones",
+                "openness",
+                "opinions_matter",
+                "opportunity",
+                "performance",
+                "pride_in_work",
+                "procedural_fairness",
+                "professional_growth",
+                "recognition",
+                "response",
+                "safe_sharing_environment",
+                "satisfaction",
+                "self_confidence",
+                "strategy",
+                "support",
+                "team",
+                "timely_communication",
+                "trying_new_things",
+                "values",
+                "values_fit",
+                "when",
+                "where",
+                "willing_to_help",
+                "work_environment",
+                "work_meaning"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.valueId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[round.type]",
+            "schema": {
+              "type": "string",
+              "default": "automatic",
+              "enum": [
+                "automatic",
+                "test"
+              ]
+            },
+            "description": "The type of rounds to include data for",
+            "in": "query"
+          },
+          {
+            "name": "observations",
+            "description": "Includes observations array in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "participation",
+            "description": "Includes participation in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "interval",
+            "description": "Limit query to a specific date interval, defaults to *quarter*.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "month",
+                "quarter",
+                "year",
+                "all",
+                "recent"
+              ]
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_drivers'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/engagementDrivers"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/engagement/contexts/{contextId}/segments/v2": {
+      "get": {
+        "tags": [
+          "Engagement"
+        ],
+        "summary": "Get segments",
+        "description": "Obtain a list of segments. The id of each segment can be used to get full engagement details using other methods in this area.",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "filter[employee.segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\".",
+            "example": "22$contains",
+            "in": "query"
+          },
+          {
+            "name": "filter[question.driver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "autonomy",
+                "collaboration",
+                "communication",
+                "engagement",
+                "environment",
+                "free_opinions",
+                "goal_setting",
+                "growth",
+                "management_support",
+                "meaningful_work",
+                "organisational_fit",
+                "peer_relationship",
+                "recognition",
+                "reward",
+                "reward_recognition",
+                "strategy",
+                "workload"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.subdriver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "advocacy",
+                "alignment",
+                "belief",
+                "belief_in_action",
+                "belief_in_strategy",
+                "burnout",
+                "career_development",
+                "career_path",
+                "challenging",
+                "collaboration",
+                "communication",
+                "cross_collaboration",
+                "customer_satisfaction",
+                "demand_for_skills",
+                "distributive_fairness",
+                "effective_systems",
+                "effective_tools",
+                "efficacy",
+                "equality",
+                "equipment",
+                "expectancy_theory",
+                "fair_rewards",
+                "feel_accomplished",
+                "feeling_energised",
+                "finding_focus",
+                "focus",
+                "friendly",
+                "goals",
+                "health",
+                "how",
+                "how_to_work",
+                "impact",
+                "inclusive_culture",
+                "informal",
+                "interactional_fairness",
+                "job_fit",
+                "job_security",
+                "job_significance",
+                "known_expectations",
+                "leadership_honesty",
+                "learning",
+                "learning_from_mistakes",
+                "learning_resources",
+                "loyalty",
+                "manageable_work",
+                "manager",
+                "manager_support",
+                "meaningful_work",
+                "meeting_customer_needs",
+                "mentoring",
+                "mission",
+                "multiple_perspectives",
+                "one_to_ones",
+                "openness",
+                "opinions_matter",
+                "opportunity",
+                "performance",
+                "pride_in_work",
+                "procedural_fairness",
+                "professional_growth",
+                "recognition",
+                "response",
+                "safe_sharing_environment",
+                "satisfaction",
+                "self_confidence",
+                "strategy",
+                "support",
+                "team",
+                "timely_communication",
+                "trying_new_things",
+                "values",
+                "values_fit",
+                "when",
+                "where",
+                "willing_to_help",
+                "work_environment",
+                "work_meaning"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.valueId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[round.type]",
+            "schema": {
+              "type": "string",
+              "default": "automatic",
+              "enum": [
+                "automatic",
+                "test"
+              ]
+            },
+            "description": "The type of rounds to include data for",
+            "in": "query"
+          },
+          {
+            "name": "q",
+            "required": true,
+            "description": "A text to search for in segments",
+            "schema": {
+              "type": "string"
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_segments'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/engagementSegments"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/engagement/contexts/{contextId}/segments/groups": {
+      "get": {
+        "tags": [
+          "Engagement"
+        ],
+        "summary": "Get segments groups",
+        "description": "Return the number of segments with engagement data grouped by attribute.",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "filter[employee.segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\".",
+            "example": "22$contains",
+            "in": "query"
+          },
+          {
+            "name": "filter[question.driver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "autonomy",
+                "collaboration",
+                "communication",
+                "engagement",
+                "environment",
+                "free_opinions",
+                "goal_setting",
+                "growth",
+                "management_support",
+                "meaningful_work",
+                "organisational_fit",
+                "peer_relationship",
+                "recognition",
+                "reward",
+                "reward_recognition",
+                "strategy",
+                "workload"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.subdriver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "advocacy",
+                "alignment",
+                "belief",
+                "belief_in_action",
+                "belief_in_strategy",
+                "burnout",
+                "career_development",
+                "career_path",
+                "challenging",
+                "collaboration",
+                "communication",
+                "cross_collaboration",
+                "customer_satisfaction",
+                "demand_for_skills",
+                "distributive_fairness",
+                "effective_systems",
+                "effective_tools",
+                "efficacy",
+                "equality",
+                "equipment",
+                "expectancy_theory",
+                "fair_rewards",
+                "feel_accomplished",
+                "feeling_energised",
+                "finding_focus",
+                "focus",
+                "friendly",
+                "goals",
+                "health",
+                "how",
+                "how_to_work",
+                "impact",
+                "inclusive_culture",
+                "informal",
+                "interactional_fairness",
+                "job_fit",
+                "job_security",
+                "job_significance",
+                "known_expectations",
+                "leadership_honesty",
+                "learning",
+                "learning_from_mistakes",
+                "learning_resources",
+                "loyalty",
+                "manageable_work",
+                "manager",
+                "manager_support",
+                "meaningful_work",
+                "meeting_customer_needs",
+                "mentoring",
+                "mission",
+                "multiple_perspectives",
+                "one_to_ones",
+                "openness",
+                "opinions_matter",
+                "opportunity",
+                "performance",
+                "pride_in_work",
+                "procedural_fairness",
+                "professional_growth",
+                "recognition",
+                "response",
+                "safe_sharing_environment",
+                "satisfaction",
+                "self_confidence",
+                "strategy",
+                "support",
+                "team",
+                "timely_communication",
+                "trying_new_things",
+                "values",
+                "values_fit",
+                "when",
+                "where",
+                "willing_to_help",
+                "work_environment",
+                "work_meaning"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.valueId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[round.type]",
+            "schema": {
+              "type": "string",
+              "default": "automatic",
+              "enum": [
+                "automatic",
+                "test"
+              ]
+            },
+            "description": "The type of rounds to include data for",
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_segment_groups'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/engagementSegmentGroups"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/engagement/contexts/{contextId}/segments/v2/attributes/{attributeId}": {
+      "get": {
+        "tags": [
+          "Engagement"
+        ],
+        "summary": "Get segments for attribute",
+        "description": "Return the segments with engagement data within the given attribute.",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "attributeId",
+            "required": true,
+            "description": "The id of the attribute to get segments for. Attribute ids can be retrieved using /engagement/contexts/{contextId}/segments.",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "path"
+          },
+          {
+            "name": "filter[employee.segmentIds]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\".",
+            "example": "22$contains",
+            "in": "query"
+          },
+          {
+            "name": "filter[question.driver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "autonomy",
+                "collaboration",
+                "communication",
+                "engagement",
+                "environment",
+                "free_opinions",
+                "goal_setting",
+                "growth",
+                "management_support",
+                "meaningful_work",
+                "organisational_fit",
+                "peer_relationship",
+                "recognition",
+                "reward",
+                "reward_recognition",
+                "strategy",
+                "workload"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.subdriver]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accomplishment",
+                "advocacy",
+                "alignment",
+                "belief",
+                "belief_in_action",
+                "belief_in_strategy",
+                "burnout",
+                "career_development",
+                "career_path",
+                "challenging",
+                "collaboration",
+                "communication",
+                "cross_collaboration",
+                "customer_satisfaction",
+                "demand_for_skills",
+                "distributive_fairness",
+                "effective_systems",
+                "effective_tools",
+                "efficacy",
+                "equality",
+                "equipment",
+                "expectancy_theory",
+                "fair_rewards",
+                "feel_accomplished",
+                "feeling_energised",
+                "finding_focus",
+                "focus",
+                "friendly",
+                "goals",
+                "health",
+                "how",
+                "how_to_work",
+                "impact",
+                "inclusive_culture",
+                "informal",
+                "interactional_fairness",
+                "job_fit",
+                "job_security",
+                "job_significance",
+                "known_expectations",
+                "leadership_honesty",
+                "learning",
+                "learning_from_mistakes",
+                "learning_resources",
+                "loyalty",
+                "manageable_work",
+                "manager",
+                "manager_support",
+                "meaningful_work",
+                "meeting_customer_needs",
+                "mentoring",
+                "mission",
+                "multiple_perspectives",
+                "one_to_ones",
+                "openness",
+                "opinions_matter",
+                "opportunity",
+                "performance",
+                "pride_in_work",
+                "procedural_fairness",
+                "professional_growth",
+                "recognition",
+                "response",
+                "safe_sharing_environment",
+                "satisfaction",
+                "self_confidence",
+                "strategy",
+                "support",
+                "team",
+                "timely_communication",
+                "trying_new_things",
+                "values",
+                "values_fit",
+                "when",
+                "where",
+                "willing_to_help",
+                "work_environment",
+                "work_meaning"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[question.valueId]",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query"
+          },
+          {
+            "name": "filter[round.type]",
+            "schema": {
+              "type": "string",
+              "default": "automatic",
+              "enum": [
+                "automatic",
+                "test"
+              ]
+            },
+            "description": "The type of rounds to include data for",
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_segments'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/engagementSegments"
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scores/contexts/{contextId}/group/{group}": {
+      "get": {
+        "tags": [
+          "Scores"
+        ],
+        "summary": "Get category scores by group",
+        "description": "Get category scores according to group.",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "group",
+            "required": true,
+            "description": "The name of the category group.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "engagement",
+                "diversity_inclusion",
+                "health_wellbeing",
+                "transformation_change",
+                "onboarding",
+                "exit",
+                "covid19",
+                "other",
+                "environmental_social_governance",
+                "ancc_magnet_nursing_excellence",
+                "values"
+              ]
+            },
+            "in": "path"
+          },
+          {
+            "name": "observations",
+            "description": "Includes observations array in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "participation",
+            "description": "Includes participation in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "interval",
+            "description": "Limit query to a specific date interval, defaults to *quarter*.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "month",
+                "quarter",
+                "year",
+                "all",
+                "recent"
+              ]
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'category_scores' objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/categoryScores"
+                      }
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scores/contexts/{contextId}/questions/group/{group}": {
+      "get": {
+        "tags": [
+          "Scores"
+        ],
+        "summary": "Get question scores by group",
+        "description": "Get question scores according to group.",
+        "parameters": [
+          {
+            "name": "contextId",
+            "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "in": "path"
+          },
+          {
+            "name": "group",
+            "required": true,
+            "description": "The name of the category group.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "engagement",
+                "diversity_inclusion",
+                "health_wellbeing",
+                "transformation_change",
+                "onboarding",
+                "exit",
+                "covid19",
+                "other",
+                "environmental_social_governance",
+                "ancc_magnet_nursing_excellence",
+                "values"
+              ]
+            },
+            "in": "path"
+          },
+          {
+            "name": "observations",
+            "description": "Includes observations array in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "participation",
+            "description": "Includes participation in the returned object, defaults to *false*.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          },
+          {
+            "name": "interval",
+            "description": "Limit query to a specific date interval, defaults to *quarter*.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "month",
+                "quarter",
+                "year",
+                "all",
+                "recent"
+              ]
+            },
+            "in": "query"
+          },
+          {
+            "name": "includeSubcategories",
+            "required": false,
+            "description": "Include scores for questions in subcategories.",
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'engagement_questions' objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/engagementQuestions"
+                      }
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/segments": {
+      "get": {
+        "tags": [
+          "Segments"
+        ],
+        "summary": "Get segments",
+        "parameters": [
+          {
+            "name": "filter[attributeId]",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The id of the attribute that is the source of a segment",
+            "in": "query"
+          },
+          {
+            "name": "filter[direct]",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Segment including only direct reports or all reports",
+            "in": "query"
+          },
+          {
+            "name": "filter[managerId]",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The employeeId of a manager of a segment",
+            "in": "query"
+          },
+          {
+            "name": "filter[type]",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "employee",
+                "option",
+                "date",
+                "number"
+              ]
+            },
+            "description": "The type of attribute that is the source of a segment",
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'segments' objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/segments"
+                      }
+                    },
+                    "included": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resourceIdentifier"
+                      },
+                      "description": "An array of included JSONAPI resources"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/answers/export": {
+      "get": {
+        "tags": [
+          "Answers"
+        ],
+        "summary": "Get survey answers",
+        "parameters": [
+          {
+            "name": "per_page",
+            "required": true,
+            "description": "The maximum number of survey answers returned per page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20000
+            },
+            "in": "query"
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of survey answer with related fields included",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "A unique numeric ID identifying the answer"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Is always 'answers_export'",
+                            "enum": [
+                              "answers_export"
+                            ]
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "properties": {
+                              "accountEmail": {
+                                "type": "string",
+                                "description": "Email of the participating employee",
+                                "nullable": true
+                              },
+                              "answerId": {
+                                "type": "integer",
+                                "description": "An ID that uniquely identifies the answer"
+                              },
+                              "answerComment": {
+                                "type": "string",
+                                "description": "A comment given by the participating employee for the given question",
+                                "nullable": true
+                              },
+                              "answerLocale": {
+                                "type": "string",
+                                "description": "A locale that was detected based on the answers given during the survey. If possible the language of questionText will match this.",
+                                "nullable": true
+                              },
+                              "answerScore": {
+                                "type": "integer",
+                                "description": "The score given by participating employee for the given question",
+                                "nullable": true
+                              },
+                              "answerSkipReason": {
+                                "type": "string",
+                                "description": "If the question was skipped, this field contain the reason",
+                                "nullable": true
+                              },
+                              "answerText": {
+                                "type": "string",
+                                "description": "If the question should be answered with text and not a score, this field contain the answer given",
+                                "nullable": true
+                              },
+                              "categoryGroup": {
+                                "type": "string",
+                                "description": "The set of questions that the asked question belong to",
+                                "nullable": true
+                              },
+                              "categoryId": {
+                                "type": "string",
+                                "description": "An ID that uniquely identifies the category/driver that the asked question belong to",
+                                "nullable": true
+                              },
+                              "categoryStandard": {
+                                "type": "string",
+                                "description": "Can be used to identify built-in categories/drivers across companies",
+                                "nullable": true
+                              },
+                              "companyId": {
+                                "type": "integer",
+                                "description": "An ID that uniquely identifies the company",
+                                "nullable": true
+                              },
+                              "employeeExternalId": {
+                                "type": "string",
+                                "description": "A company-specified ID that can used to identify an employee",
+                                "nullable": true
+                              },
+                              "employeeId": {
+                                "type": "string",
+                                "description": "An ID that uniquely identifies the employee",
+                                "nullable": true
+                              },
+                              "questionId": {
+                                "type": "string",
+                                "description": "An ID that uniquely identifies the asked question. Each question has translations so that questionText in different locales ties into the same questionId.",
+                                "nullable": true
+                              },
+                              "questionText": {
+                                "type": "string",
+                                "description": "The text of the question being asked. The language of questionText will match answerLocale. Default is the question text seen in the Peakon product.",
+                                "nullable": true
+                              },
+                              "questionType": {
+                                "type": "string",
+                                "description": "The type of question asked.",
+                                "enum": [
+                                  "scale",
+                                  "text",
+                                  "value"
+                                ],
+                                "nullable": true
+                              },
+                              "responseAnsweredAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The time when the survey response was submitted",
+                                "nullable": true
+                              },
+                              "responseId": {
+                                "type": "integer",
+                                "description": "An ID that uniquely identifies the asked response",
+                                "nullable": true
+                              },
+                              "roundEnd": {
+                                "type": "string",
+                                "format": "date",
+                                "description": "A date for when the survey round ended",
+                                "nullable": true
+                              },
+                              "roundId": {
+                                "type": "integer",
+                                "description": "An ID that uniquely identifies the round",
+                                "nullable": true
+                              },
+                              "roundOpensAt": {
+                                "type": "string",
+                                "format": "date",
+                                "description": "A date for when the survey round opened",
+                                "nullable": true
+                              },
+                              "roundType": {
+                                "type": "string",
+                                "description": "Is \"test\" if the survey is a test survey. \"automatic\" otherwise.",
+                                "enum": [
+                                  "automatic",
+                                  "test"
+                                ],
+                                "nullable": true
+                              },
+                              "scheduleContextName": {
+                                "type": "string",
+                                "description": "The name of the Company or Segment that the schedule is for",
+                                "nullable": true
+                              },
+                              "scheduleId": {
+                                "type": "integer",
+                                "description": "An ID that uniquely identifies the schedule",
+                                "nullable": true
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "links": {
+                      "type": "object",
+                      "properties": {
+                        "first": {
+                          "type": "string",
+                          "format": "uri",
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "format": "uri",
+                          "nullable": false
+                        },
+                        "next": {
+                          "type": "string",
+                          "format": "uri",
+                          "nullable": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "actions": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "driver": {
+                "type": "string",
+                "enum": [
+                  "accomplishment",
+                  "autonomy",
+                  "collaboration",
+                  "communication",
+                  "engagement",
+                  "environment",
+                  "free_opinions",
+                  "goal_setting",
+                  "growth",
+                  "management_support",
+                  "meaningful_work",
+                  "organisational_fit",
+                  "peer_relationship",
+                  "recognition",
+                  "reward",
+                  "reward_recognition",
+                  "strategy",
+                  "workload"
+                ]
+              },
+              "subdriver": {
+                "type": "string",
+                "enum": [
+                  "accomplishment",
+                  "advocacy",
+                  "alignment",
+                  "belief",
+                  "belief_in_action",
+                  "belief_in_strategy",
+                  "burnout",
+                  "career_development",
+                  "career_path",
+                  "challenging",
+                  "collaboration",
+                  "communication",
+                  "cross_collaboration",
+                  "customer_satisfaction",
+                  "demand_for_skills",
+                  "distributive_fairness",
+                  "effective_systems",
+                  "effective_tools",
+                  "efficacy",
+                  "equality",
+                  "equipment",
+                  "expectancy_theory",
+                  "fair_rewards",
+                  "feel_accomplished",
+                  "feeling_energised",
+                  "finding_focus",
+                  "focus",
+                  "friendly",
+                  "goals",
+                  "health",
+                  "how",
+                  "how_to_work",
+                  "impact",
+                  "inclusive_culture",
+                  "informal",
+                  "interactional_fairness",
+                  "job_fit",
+                  "job_security",
+                  "job_significance",
+                  "known_expectations",
+                  "leadership_honesty",
+                  "learning",
+                  "learning_from_mistakes",
+                  "learning_resources",
+                  "loyalty",
+                  "manageable_work",
+                  "manager",
+                  "manager_support",
+                  "meaningful_work",
+                  "meeting_customer_needs",
+                  "mentoring",
+                  "mission",
+                  "multiple_perspectives",
+                  "one_to_ones",
+                  "openness",
+                  "opinions_matter",
+                  "opportunity",
+                  "performance",
+                  "pride_in_work",
+                  "procedural_fairness",
+                  "professional_growth",
+                  "recognition",
+                  "response",
+                  "safe_sharing_environment",
+                  "satisfaction",
+                  "self_confidence",
+                  "strategy",
+                  "support",
+                  "team",
+                  "timely_communication",
+                  "trying_new_things",
+                  "values",
+                  "values_fit",
+                  "when",
+                  "where",
+                  "willing_to_help",
+                  "work_environment",
+                  "work_meaning"
+                ]
+              },
+              "group": {
+                "type": "string"
+              },
+              "completedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "archivedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "access": {
+                "type": "string",
+                "enum": [
+                  "private",
+                  "shared"
+                ]
+              },
+              "dueAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "text": {
+                "type": "string"
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "type": "object"
+      },
+      "resourceIdentifier": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "audits": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "event": {
+                "type": "string",
+                "enum": [
+                  "activated",
+                  "authentication",
+                  "bounced",
+                  "complained",
+                  "changedRole",
+                  "cleared_bounces",
+                  "clearedComplaints",
+                  "completed",
+                  "confirmationRequest",
+                  "confirmed",
+                  "created",
+                  "generateAuthenticationCode",
+                  "generatedAgentToken",
+                  "passwordChange",
+                  "passwordRecovery",
+                  "presentation",
+                  "recoveryRequest",
+                  "resubscribed",
+                  "samlLogoutRequest",
+                  "signup_consent_given",
+                  "twofactorRegisterCompleted",
+                  "twofactorRegisterStarted",
+                  "twofactorRemoved",
+                  "uncompleted",
+                  "unsubscribed",
+                  "updated",
+                  "upserted",
+                  "useAuthenticationCode",
+                  "archived",
+                  "deleted",
+                  "incompleted",
+                  "suggested",
+                  "unarchived",
+                  "acknowledged",
+                  "deletedComment",
+                  "deletedInput",
+                  "markedSensitive",
+                  "unmarkedSensitive",
+                  "delete",
+                  "hookFailed",
+                  "hookFired",
+                  "hookPaused",
+                  "hookDisabled",
+                  "hookEnabled",
+                  "obliterated",
+                  "segmentationDisabled",
+                  "segmentationEnabled",
+                  "assignedQuestions",
+                  "unassignedQuestions",
+                  "revealIdentity",
+                  "addedDomain",
+                  "removedDomain",
+                  "anonymized",
+                  "blocked",
+                  "imported",
+                  "importStarted",
+                  "dataObliterateStarted",
+                  "regeneratedCode",
+                  "samlLoginRequest",
+                  "unblocked",
+                  "createdCompanyShard",
+                  "deletedCompanyShard",
+                  "addedCompanySubdomain",
+                  "updatedPrimaryCompanySubdomain",
+                  "deletedCompanySubdomain",
+                  "generatedLogHash",
+                  "stripped",
+                  "ended",
+                  "accepted",
+                  "withdrawn",
+                  "enabled",
+                  "disabled",
+                  "verificationStatusChanged",
+                  "push",
+                  "actionsReminder",
+                  "consent",
+                  "dailySent",
+                  "lowParticipation",
+                  "markAllAsRead",
+                  "markAllAsViewed",
+                  "notified",
+                  "nps",
+                  "smsSent",
+                  "upcomingRound",
+                  "employeeAttributesChanged",
+                  "correlated",
+                  "added",
+                  "markAsViewed",
+                  "markAsUnviewed",
+                  "sent",
+                  "smsReceipt",
+                  "smsReceived",
+                  "set",
+                  "migrated",
+                  "rejected",
+                  "expired",
+                  "retire",
+                  "scheduled",
+                  "upgrade",
+                  "answer",
+                  "clear",
+                  "create",
+                  "open",
+                  "remind",
+                  "reopen",
+                  "resend",
+                  "reset",
+                  "responseRequest",
+                  "scheduleRemind",
+                  "send",
+                  "close",
+                  "hard-close",
+                  "scheduleLowParticipation",
+                  "sendLowParticipation",
+                  "update",
+                  "addedAttribute",
+                  "recurred",
+                  "reminded",
+                  "removedAttribute",
+                  "frequenciesUpdated",
+                  "restored",
+                  "recalculated",
+                  "exceeded",
+                  "statusUpdated",
+                  "reasonSet",
+                  "switch",
+                  "transferComplete",
+                  "transferStart",
+                  "twofactorSms",
+                  "twofactorVerified",
+                  "regenerated_token",
+                  "resetQueued"
+                ]
+              },
+              "objectType": {
+                "type": "string",
+                "enum": [
+                  "Account",
+                  "AccountSettings",
+                  "Action",
+                  "ActionItem",
+                  "ActionRejection",
+                  "Answer",
+                  "AnswerTopic",
+                  "AppIntegration",
+                  "Application",
+                  "Attribute",
+                  "AttributeHierarchy",
+                  "AttributeLink",
+                  "AttributeOption",
+                  "AttributeRange",
+                  "AttributeTreeNode",
+                  "Bookmark",
+                  "Branding",
+                  "Category",
+                  "Comment",
+                  "CommentSemanticSearchFeedback",
+                  "Company",
+                  "CompanyAction",
+                  "CompanyBenchmarkVersion",
+                  "CompanyResource",
+                  "CompanySettings",
+                  "Consultant",
+                  "Conversation",
+                  "ConversationMessage",
+                  "CustomConsent",
+                  "CustomConsentAccept",
+                  "CustomSenderDomain",
+                  "DenylistedTopic",
+                  "Device",
+                  "Employee",
+                  "EmployeeAttribute",
+                  "ExternalMetric",
+                  "ExternalMetricObservation",
+                  "FeatureFlip",
+                  "Feedback",
+                  "FeedbackRecipient",
+                  "Group",
+                  "GroupMember",
+                  "MailDomain",
+                  "Notification",
+                  "NotificationSettings",
+                  "Phone",
+                  "PriorityDriver",
+                  "PrioritySegment",
+                  "Question",
+                  "QuestionRule",
+                  "Response",
+                  "Round",
+                  "SAMLConfiguration",
+                  "Schedule",
+                  "Segment",
+                  "SegmentLimit",
+                  "SegmentLink",
+                  "SegmentManager",
+                  "SemanticTag",
+                  "SemanticTagFeedback",
+                  "SensitiveComment",
+                  "SensitiveConcept",
+                  "SensitiveKeyword",
+                  "Session",
+                  "Share",
+                  "TeamSuggestion",
+                  "TestCompany",
+                  "Topic",
+                  "TopicFeedback",
+                  "Value",
+                  "Vote"
+                ]
+              },
+              "objectId": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "object"
+              },
+              "text": {
+                "type": "string"
+              },
+              "address": {
+                "type": "object"
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "countryCode": {
+                    "type": "string"
+                  },
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "latitude": {
+                        "type": "number",
+                        "format": "double"
+                      },
+                      "longitude": {
+                        "type": "number",
+                        "format": "double"
+                      }
+                    }
+                  }
+                }
+              },
+              "agent": {
+                "type": "object",
+                "properties": {
+                  "browser": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "os": {
+                    "type": "string"
+                  },
+                  "osVersion": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "account": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/resourceIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "type": "object"
+      },
+      "bearerTokens": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "description": "The JWT token to use in the Authorization header of subsequent requests"
+          }
+        },
+        "type": "object"
+      },
+      "employees": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "identifier": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "avatar": {
+                "type": "string"
+              },
+              "employmentStart": {
+                "type": "string"
+              },
+              "external": {
+                "type": "boolean"
+              }
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "account": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/resourceIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "type": "object"
+      },
+      "engagementOverviews": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attributes": {
+            "properties": {
+              "scores": {
+                "type": "object"
+              },
+              "changes": {
+                "type": "object"
+              },
+              "observations": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "participation": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "type": "object"
+      },
+      "engagementDrivers": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attributes": {
+            "properties": {
+              "driver": {
+                "type": "string"
+              },
+              "subdriver": {
+                "type": "string"
+              },
+              "rank": {
+                "type": "string"
+              },
+              "classification": {
+                "type": "string"
+              },
+              "impact": {
+                "type": "string"
+              },
+              "scores": {
+                "type": "object"
+              },
+              "changes": {
+                "type": "object"
+              },
+              "observations": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "participation": {
+                "type": "object"
+              },
+              "url": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "type": "object"
+      },
+      "engagementSegments": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attributes": {
+            "properties": {
+              "size": {
+                "type": "integer"
+              },
+              "links": {
+                "type": "integer"
+              },
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "priority",
+                  "strength"
+                ]
+              }
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "segment": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/resourceIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "type": "object"
+      },
+      "engagementSegmentGroups": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attributes": {
+            "properties": {
+              "segmentCount": {
+                "type": "integer"
+              },
+              "negativeCount": {
+                "type": "integer"
+              },
+              "positiveCount": {
+                "type": "integer"
+              }
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "attribute": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/resourceIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "type": "object"
+      },
+      "categoryScores": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "grade": {
+                "type": "string"
+              },
+              "impact": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "scores": {
+                "type": "object"
+              },
+              "observations": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "participation": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "type": "object"
+      },
+      "engagementQuestions": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "scores": {
+                "type": "object"
+              },
+              "changes": {
+                "type": "object"
+              },
+              "observations": {
+                "type": "object"
+              },
+              "participation": {
+                "type": "object"
+              },
+              "url": {
+                "type": "string"
+              },
+              "relationships": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "type": "object"
+      },
+      "segments": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "identifier": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "logo": {
+                "type": "string"
+              },
+              "standard": {
+                "type": "string"
+              },
+              "benchmarkType": {
+                "type": "string"
+              },
+              "benchmarkId": {
+                "type": "string"
+              },
+              "contextId": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "abbreviation": {
+                "type": "string"
+              },
+              "direct": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "type": "object"
+      }
+    }
+  }
+}
