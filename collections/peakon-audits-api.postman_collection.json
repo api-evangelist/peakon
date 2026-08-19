@@ -1,0 +1,171 @@
+{
+  "item": [
+    {
+      "id": "a411d632-1c27-4cd8-bc9b-e85d87ee41b7",
+      "name": "Audits",
+      "description": {
+        "content": "Retrieving company audit log",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a3e0ded-6ac8-475c-8793-92610503b96d",
+          "name": "Get audits",
+          "request": {
+            "name": "Get audits",
+            "description": {},
+            "url": {
+              "path": [
+                "audits",
+                "company",
+                ":companyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[createdAt]",
+                  "value": "<dateTime>",
+                  "description": "Used to filter events based on dates. The operator should follow the value. Operators can f.ex. be $gte for \"Greater than or equal\" and $lte for \"Less than or equal\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[event]",
+                  "value": "<string>",
+                  "description": "The event to filter the audits by. Some events will not be available for 3rd party access."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[objectType]",
+                  "value": "<string>",
+                  "description": "The type of object to filter the audits by. Some types of objects will not be available for 3rd party access."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "companyId",
+                  "description": "(Required) The id of the company"
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "becf6a48-7d44-46b4-b7d5-2216109eb3c7",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'audits' objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audits",
+                    "company",
+                    ":companyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[createdAt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[event]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[objectType]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "companyId",
+                      "description": "(Required) The id of the company"
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"createdAt\": \"1977-06-14T07:03:52.343Z\",\n        \"event\": \"acknowledged\",\n        \"objectType\": \"SegmentLimit\",\n        \"objectId\": 0,\n        \"data\": {},\n        \"text\": \"string\",\n        \"address\": {},\n        \"location\": {\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"countryCode\": \"string\",\n          \"location\": {\n            \"latitude\": 3176.0182677765447,\n            \"longitude\": 9244.572466222451\n          }\n        },\n        \"agent\": {\n          \"browser\": \"string\",\n          \"version\": \"string\",\n          \"os\": \"string\",\n          \"osVersion\": \"string\"\n        }\n      },\n      \"relationships\": {\n        \"account\": {\n          \"data\": {\n            \"type\": \"string\",\n            \"id\": \"string\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"createdAt\": \"1993-03-07T16:13:16.886Z\",\n        \"event\": \"incompleted\",\n        \"objectType\": \"QuestionRule\",\n        \"objectId\": 2446,\n        \"data\": {},\n        \"text\": \"string\",\n        \"address\": {},\n        \"location\": {\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"countryCode\": \"string\",\n          \"location\": {\n            \"latitude\": 3391.909567300796,\n            \"longitude\": 1195.3314902749967\n          }\n        },\n        \"agent\": {\n          \"browser\": \"string\",\n          \"version\": \"string\",\n          \"os\": \"string\",\n          \"osVersion\": \"string\"\n        }\n      },\n      \"relationships\": {\n        \"account\": {\n          \"data\": {\n            \"type\": \"string\",\n            \"id\": \"string\"\n          }\n        }\n      }\n    }\n  ],\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Unique subdomain assigned to your Peakon instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "api",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.peakon.com/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5786c194-5e2f-486b-83c4-f58e4c8bdd83",
+    "name": "Peakon Actions Audits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Public Peakon API",
+      "type": "text/plain"
+    }
+  }
+}

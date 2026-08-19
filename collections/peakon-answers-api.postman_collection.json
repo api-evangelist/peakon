@@ -1,0 +1,135 @@
+{
+  "item": [
+    {
+      "id": "b7b453fa-583c-4ab6-a22a-609c4b00fe40",
+      "name": "Answers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0932171-8403-4c9c-862e-9f8255a4df58",
+          "name": "Get survey answers",
+          "request": {
+            "name": "Get survey answers",
+            "description": {},
+            "url": {
+              "path": [
+                "answers",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "(Required) The maximum number of survey answers returned per page"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e978d902-2fe1-4103-af4f-1ec60d4d06b1",
+              "name": "A list of survey answer with related fields included",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "answers",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"answers_export\",\n      \"attributes\": {\n        \"accountEmail\": \"string\",\n        \"answerId\": 3444,\n        \"answerComment\": \"string\",\n        \"answerLocale\": \"string\",\n        \"answerScore\": 716,\n        \"answerSkipReason\": \"string\",\n        \"answerText\": \"string\",\n        \"categoryGroup\": \"string\",\n        \"categoryId\": \"string\",\n        \"categoryStandard\": \"string\",\n        \"companyId\": 2218,\n        \"employeeExternalId\": \"string\",\n        \"employeeId\": \"string\",\n        \"questionId\": \"string\",\n        \"questionText\": \"string\",\n        \"questionType\": \"text\",\n        \"responseAnsweredAt\": \"1973-07-23T00:31:33.612Z\",\n        \"responseId\": 7605,\n        \"roundEnd\": \"2006-01-13\",\n        \"roundId\": 3784,\n        \"roundOpensAt\": \"1988-04-18\",\n        \"roundType\": \"automatic\",\n        \"scheduleContextName\": \"string\",\n        \"scheduleId\": 1813\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"answers_export\",\n      \"attributes\": {\n        \"accountEmail\": \"string\",\n        \"answerId\": 466,\n        \"answerComment\": \"string\",\n        \"answerLocale\": \"string\",\n        \"answerScore\": 3136,\n        \"answerSkipReason\": \"string\",\n        \"answerText\": \"string\",\n        \"categoryGroup\": \"string\",\n        \"categoryId\": \"string\",\n        \"categoryStandard\": \"string\",\n        \"companyId\": 7434,\n        \"employeeExternalId\": \"string\",\n        \"employeeId\": \"string\",\n        \"questionId\": \"string\",\n        \"questionText\": \"string\",\n        \"questionType\": \"scale\",\n        \"responseAnsweredAt\": \"1996-02-03T10:34:41.464Z\",\n        \"responseId\": 4609,\n        \"roundEnd\": \"1949-08-09\",\n        \"roundId\": 5640,\n        \"roundOpensAt\": \"2000-12-22\",\n        \"roundType\": \"test\",\n        \"scheduleContextName\": \"string\",\n        \"scheduleId\": 8161\n      }\n    }\n  ],\n  \"links\": {\n    \"first\": \"http://aVHdIhKIzRaLFEXiAnqJIzk.orqjLGH2p082Tok0AP2Na4\",\n    \"self\": \"http://zWqycTaAlTSWjjvVJtnYISDQZAOkGYrK.syklq,LwJ8\",\n    \"next\": \"http://OLhoiJfEXVVCIrNOnBxBBYX.funTP3,OtRfA+8q2nJJe3nq-cJPKQDLqGuL\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Unique subdomain assigned to your Peakon instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "api",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.peakon.com/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "63612d15-7394-4d9e-9d1f-70e5952fec26",
+    "name": "Peakon Actions Answers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Public Peakon API",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peakon Actions Employees API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/employees",
+            "params": [
+              {
+                "name": "filter[account.email]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[accountId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[admin]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[employeeId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[manager]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[segmentIds]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get employees"
+        },
+        {
+          "info": {
+            "name": "Create employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.peakon.com/api/v1/employees"
+          },
+          "docs": "Create employee"
+        },
+        {
+          "info": {
+            "name": "Get employees for context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/employees/contexts/:contextId",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "filter[account.email]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[accountId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[admin]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[employeeId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[manager]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[segmentIds]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get employees for context"
+        },
+        {
+          "info": {
+            "name": "Get employee count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/employees/count",
+            "params": [
+              {
+                "name": "filter[account.email]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[accountId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[admin]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[employeeId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[manager]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[segmentIds]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get employee count"
+        },
+        {
+          "info": {
+            "name": "Get employee count for context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/employees/contexts/:contextId/count",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "filter[account.email]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[accountId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[admin]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[employeeId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[manager]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[segmentIds]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get employee count for context"
+        },
+        {
+          "info": {
+            "name": "Get employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/employees/:employeeId",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the employee"
+              }
+            ]
+          },
+          "docs": "Get employee"
+        },
+        {
+          "info": {
+            "name": "Update employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{subdomain}.peakon.com/api/v1/employees/:employeeId",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the employee"
+              }
+            ]
+          },
+          "docs": "Update employee"
+        },
+        {
+          "info": {
+            "name": "Delete employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{subdomain}.peakon.com/api/v1/employees/:employeeId",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the employee"
+              }
+            ]
+          },
+          "docs": "Delete employee"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -5,127 +5,133 @@ status: candidate
 server:
   name: peakon
   transport: http
-  description: >-
-    Candidate MCP tool surface derived from the public Peakon API (v1.1.0).
-    No official Peakon-hosted MCP server was found as of 2026-07-20.
+  description: Candidate MCP tool surface derived from the public Peakon API (v1.1.0). No official Peakon-hosted
+    MCP server was found as of 2026-07-20.
 tools:
-  - name: get_actions
-    description: "Get actions"
-    method: GET
-    path: "/actions/contexts/{contextId}"
-    source_operation: "openapi/peakon-openapi-original.json GET /actions/contexts/{contextId}"
-  - name: get_audits
-    description: "Get audits"
-    method: GET
-    path: "/audits/company/{companyId}"
-    source_operation: "openapi/peakon-openapi-original.json GET /audits/company/{companyId}"
-  - name: authenticate_application
-    description: "Authenticate application"
-    method: POST
-    path: "/auth/application"
-    source_operation: "openapi/peakon-openapi-original.json POST /auth/application"
-  - name: get_employees
-    description: "Get employees"
-    method: GET
-    path: "/employees"
-    source_operation: "openapi/peakon-openapi-original.json GET /employees"
-  - name: create_employee
-    description: "Create employee"
-    method: POST
-    path: "/employees"
-    source_operation: "openapi/peakon-openapi-original.json POST /employees"
-  - name: get_employees_for_context
-    description: "Get employees for context"
-    method: GET
-    path: "/employees/contexts/{contextId}"
-    source_operation: "openapi/peakon-openapi-original.json GET /employees/contexts/{contextId}"
-  - name: get_employee_count
-    description: "Get employee count"
-    method: GET
-    path: "/employees/count"
-    source_operation: "openapi/peakon-openapi-original.json GET /employees/count"
-  - name: get_employee_count_for_context
-    description: "Get employee count for context"
-    method: GET
-    path: "/employees/contexts/{contextId}/count"
-    source_operation: "openapi/peakon-openapi-original.json GET /employees/contexts/{contextId}/count"
-  - name: get_employee
-    description: "Get employee"
-    method: GET
-    path: "/employees/{employeeId}"
-    source_operation: "openapi/peakon-openapi-original.json GET /employees/{employeeId}"
-  - name: update_employee
-    description: "Update employee"
-    method: PATCH
-    path: "/employees/{employeeId}"
-    source_operation: "openapi/peakon-openapi-original.json PATCH /employees/{employeeId}"
-  - name: delete_employee
-    description: "Delete employee"
-    method: DELETE
-    path: "/employees/{employeeId}"
-    source_operation: "openapi/peakon-openapi-original.json DELETE /employees/{employeeId}"
-  - name: get_overview
-    description: "Return the engagement overview for the entire company."
-    method: GET
-    path: "/engagement/overview"
-    source_operation: "openapi/peakon-openapi-original.json GET /engagement/overview"
-  - name: get_overview_for_context
-    description: "Return the engagement overview for the specified context."
-    method: GET
-    path: "/engagement/contexts/{contextId}/overview"
-    source_operation: "openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/overview"
-  - name: get_for_drivers
-    description: "Return the engagement details per driver for the entire company."
-    method: GET
-    path: "/engagement/drivers"
-    source_operation: "openapi/peakon-openapi-original.json GET /engagement/drivers"
-  - name: get_for_drivers_for_context
-    description: "Return the engagement details per driver for the given context."
-    method: GET
-    path: "/engagement/contexts/{contextId}/drivers"
-    source_operation: "openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/drivers"
-  - name: get_by_driver
-    description: "Return the engagement details for the given driver for the entire company."
-    method: GET
-    path: "/engagement/drivers/{driver}"
-    source_operation: "openapi/peakon-openapi-original.json GET /engagement/drivers/{driver}"
-  - name: get_by_driver_for_context
-    description: "Return the engagement details for the given driver for the given context."
-    method: GET
-    path: "/engagement/contexts/{contextId}/drivers/{driver}"
-    source_operation: "openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/drivers/{driver}"
-  - name: get_segments
-    description: "Obtain a list of segments. The id of each segment can be used to get full engagement details using other methods in this area."
-    method: GET
-    path: "/engagement/contexts/{contextId}/segments/v2"
-    source_operation: "openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/segments/v2"
-  - name: get_segments_groups
-    description: "Return the number of segments with engagement data grouped by attribute."
-    method: GET
-    path: "/engagement/contexts/{contextId}/segments/groups"
-    source_operation: "openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/segments/groups"
-  - name: get_segments_for_attribute
-    description: "Return the segments with engagement data within the given attribute."
-    method: GET
-    path: "/engagement/contexts/{contextId}/segments/v2/attributes/{attributeId}"
-    source_operation: "openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/segments/v2/attributes/{attributeId}"
-  - name: get_category_scores_by_group
-    description: "Get category scores according to group."
-    method: GET
-    path: "/scores/contexts/{contextId}/group/{group}"
-    source_operation: "openapi/peakon-openapi-original.json GET /scores/contexts/{contextId}/group/{group}"
-  - name: get_question_scores_by_group
-    description: "Get question scores according to group."
-    method: GET
-    path: "/scores/contexts/{contextId}/questions/group/{group}"
-    source_operation: "openapi/peakon-openapi-original.json GET /scores/contexts/{contextId}/questions/group/{group}"
-  - name: get_segments_x
-    description: "Get segments"
-    method: GET
-    path: "/segments"
-    source_operation: "openapi/peakon-openapi-original.json GET /segments"
-  - name: get_survey_answers
-    description: "Get survey answers"
-    method: GET
-    path: "/answers/export"
-    source_operation: "openapi/peakon-openapi-original.json GET /answers/export"
+- name: get_actions
+  description: Get actions
+  method: GET
+  path: /actions/contexts/{contextId}
+  source_operation: openapi/peakon-openapi-original.json GET /actions/contexts/{contextId}
+- name: get_audits
+  description: Get audits
+  method: GET
+  path: /audits/company/{companyId}
+  source_operation: openapi/peakon-openapi-original.json GET /audits/company/{companyId}
+- name: authenticate_application
+  description: Authenticate application
+  method: POST
+  path: /auth/application
+  source_operation: openapi/peakon-openapi-original.json POST /auth/application
+- name: get_employees
+  description: Get employees
+  method: GET
+  path: /employees
+  source_operation: openapi/peakon-openapi-original.json GET /employees
+- name: create_employee
+  description: Create employee
+  method: POST
+  path: /employees
+  source_operation: openapi/peakon-openapi-original.json POST /employees
+- name: get_employees_for_context
+  description: Get employees for context
+  method: GET
+  path: /employees/contexts/{contextId}
+  source_operation: openapi/peakon-openapi-original.json GET /employees/contexts/{contextId}
+- name: get_employee_count
+  description: Get employee count
+  method: GET
+  path: /employees/count
+  source_operation: openapi/peakon-openapi-original.json GET /employees/count
+- name: get_employee_count_for_context
+  description: Get employee count for context
+  method: GET
+  path: /employees/contexts/{contextId}/count
+  source_operation: openapi/peakon-openapi-original.json GET /employees/contexts/{contextId}/count
+- name: get_employee
+  description: Get employee
+  method: GET
+  path: /employees/{employeeId}
+  source_operation: openapi/peakon-openapi-original.json GET /employees/{employeeId}
+- name: update_employee
+  description: Update employee
+  method: PATCH
+  path: /employees/{employeeId}
+  source_operation: openapi/peakon-openapi-original.json PATCH /employees/{employeeId}
+- name: delete_employee
+  description: Delete employee
+  method: DELETE
+  path: /employees/{employeeId}
+  source_operation: openapi/peakon-openapi-original.json DELETE /employees/{employeeId}
+- name: get_overview
+  description: Return the engagement overview for the entire company.
+  method: GET
+  path: /engagement/overview
+  source_operation: openapi/peakon-openapi-original.json GET /engagement/overview
+- name: get_overview_for_context
+  description: Return the engagement overview for the specified context.
+  method: GET
+  path: /engagement/contexts/{contextId}/overview
+  source_operation: openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/overview
+- name: get_for_drivers
+  description: Return the engagement details per driver for the entire company.
+  method: GET
+  path: /engagement/drivers
+  source_operation: openapi/peakon-openapi-original.json GET /engagement/drivers
+- name: get_for_drivers_for_context
+  description: Return the engagement details per driver for the given context.
+  method: GET
+  path: /engagement/contexts/{contextId}/drivers
+  source_operation: openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/drivers
+- name: get_by_driver
+  description: Return the engagement details for the given driver for the entire company.
+  method: GET
+  path: /engagement/drivers/{driver}
+  source_operation: openapi/peakon-openapi-original.json GET /engagement/drivers/{driver}
+- name: get_by_driver_for_context
+  description: Return the engagement details for the given driver for the given context.
+  method: GET
+  path: /engagement/contexts/{contextId}/drivers/{driver}
+  source_operation: openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/drivers/{driver}
+- name: get_segments
+  description: Obtain a list of segments. The id of each segment can be used to get full engagement details
+    using other methods in this area.
+  method: GET
+  path: /engagement/contexts/{contextId}/segments/v2
+  source_operation: openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/segments/v2
+- name: get_segments_groups
+  description: Return the number of segments with engagement data grouped by attribute.
+  method: GET
+  path: /engagement/contexts/{contextId}/segments/groups
+  source_operation: openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/segments/groups
+- name: get_segments_for_attribute
+  description: Return the segments with engagement data within the given attribute.
+  method: GET
+  path: /engagement/contexts/{contextId}/segments/v2/attributes/{attributeId}
+  source_operation: openapi/peakon-openapi-original.json GET /engagement/contexts/{contextId}/segments/v2/attributes/{attributeId}
+- name: get_category_scores_by_group
+  description: Get category scores according to group.
+  method: GET
+  path: /scores/contexts/{contextId}/group/{group}
+  source_operation: openapi/peakon-openapi-original.json GET /scores/contexts/{contextId}/group/{group}
+- name: get_question_scores_by_group
+  description: Get question scores according to group.
+  method: GET
+  path: /scores/contexts/{contextId}/questions/group/{group}
+  source_operation: openapi/peakon-openapi-original.json GET /scores/contexts/{contextId}/questions/group/{group}
+- name: get_segments_x
+  description: Get segments
+  method: GET
+  path: /segments
+  source_operation: openapi/peakon-openapi-original.json GET /segments
+- name: get_survey_answers
+  description: Get survey answers
+  method: GET
+  path: /answers/export
+  source_operation: openapi/peakon-openapi-original.json GET /answers/export
+deployment:
+  mode: none
+  verified: derived
+  tools: 24
+  checked: '2026-08-12'
+  source: catalog MCP census

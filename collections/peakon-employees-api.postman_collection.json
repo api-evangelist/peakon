@@ -1,0 +1,1017 @@
+{
+  "item": [
+    {
+      "id": "d32e5e4a-b5f3-4f7f-b695-a7de2304cfd4",
+      "name": "Employees",
+      "description": {
+        "content": "Manage employees",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d8a024e-106c-40ec-b29a-eb10797b4dd6",
+          "name": "Get employees",
+          "request": {
+            "name": "Get employees",
+            "description": {},
+            "url": {
+              "path": [
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[account.email]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[accountId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[admin]",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employeeId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[manager]",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[segmentIds]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[segmentIds]",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "0181f8d1-d87a-49c3-89c5-7a275db7619c",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'employees' objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[account.email]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[accountId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[admin]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[employeeId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[manager]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[segmentIds]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"identifier\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"name\": \"string\",\n        \"avatar\": \"string\",\n        \"employmentStart\": \"string\",\n        \"external\": false\n      },\n      \"relationships\": {\n        \"account\": {\n          \"data\": {\n            \"type\": \"string\",\n            \"id\": \"string\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"identifier\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"name\": \"string\",\n        \"avatar\": \"string\",\n        \"employmentStart\": \"string\",\n        \"external\": true\n      },\n      \"relationships\": {\n        \"account\": {\n          \"data\": {\n            \"type\": \"string\",\n            \"id\": \"string\"\n          }\n        }\n      }\n    }\n  ],\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ae5c2e3-cbc0-4bb8-94eb-0f7f2642da3b",
+          "name": "Create employee",
+          "request": {
+            "name": "Create employee",
+            "description": {},
+            "url": {
+              "path": [
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "11754dab-7582-4324-9124-d7be59b815ab",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"identifier\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"name\": \"string\",\n      \"avatar\": \"string\",\n      \"employmentStart\": \"string\",\n      \"external\": true\n    },\n    \"relationships\": {\n      \"account\": {\n        \"data\": {\n          \"type\": \"string\",\n          \"id\": \"string\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f964676-3acf-4d4f-8046-3eca3f2bdd2a",
+          "name": "Get employees for context",
+          "request": {
+            "name": "Get employees for context",
+            "description": {},
+            "url": {
+              "path": [
+                "employees",
+                "contexts",
+                ":contextId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[account.email]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[accountId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[admin]",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employeeId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[manager]",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[segmentIds]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[segmentIds]",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contextId",
+                  "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "7f2d550a-d989-4d52-8e08-63b75db4e8aa",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    "contexts",
+                    ":contextId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[account.email]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[accountId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[admin]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[employeeId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[manager]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[segmentIds]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contextId",
+                      "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"identifier\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"name\": \"string\",\n      \"avatar\": \"string\",\n      \"employmentStart\": \"string\",\n      \"external\": true\n    },\n    \"relationships\": {\n      \"account\": {\n        \"data\": {\n          \"type\": \"string\",\n          \"id\": \"string\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c16d83d-3e8a-4024-b726-2b2a497509a4",
+          "name": "Get employee count",
+          "request": {
+            "name": "Get employee count",
+            "description": {},
+            "url": {
+              "path": [
+                "employees",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[account.email]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[accountId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[admin]",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employeeId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[manager]",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[segmentIds]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[segmentIds]",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a1c77510-8989-47a2-9fcf-e98767ef0b6e",
+              "name": "A JSON response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[account.email]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[accountId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[admin]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[employeeId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[manager]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[segmentIds]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3607\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdcbfd9e-083b-40d7-b05a-a785a620b794",
+          "name": "Get employee count for context",
+          "request": {
+            "name": "Get employee count for context",
+            "description": {},
+            "url": {
+              "path": [
+                "employees",
+                "contexts",
+                ":contextId",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[account.email]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[accountId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[admin]",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employeeId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[manager]",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[segmentIds]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[segmentIds]",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contextId",
+                  "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e6e5eea4-897c-44c7-ab00-0294f7b7b1c4",
+              "name": "A JSON response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    "contexts",
+                    ":contextId",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[account.email]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[accountId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[admin]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[employeeId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[manager]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[segmentIds]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contextId",
+                      "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1975\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "593c122e-ab4c-4961-b350-d522af7e3537",
+          "name": "Get employee",
+          "request": {
+            "name": "Get employee",
+            "description": {},
+            "url": {
+              "path": [
+                "employees",
+                ":employeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "employeeId",
+                  "description": "(Required) The id of the employee"
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "b1534f36-aeb4-47ef-8fbe-70992dd63362",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) The id of the employee"
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"identifier\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"name\": \"string\",\n      \"avatar\": \"string\",\n      \"employmentStart\": \"string\",\n      \"external\": true\n    },\n    \"relationships\": {\n      \"account\": {\n        \"data\": {\n          \"type\": \"string\",\n          \"id\": \"string\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d33649e-149d-4aac-b410-e49ad39844f7",
+          "name": "Update employee",
+          "request": {
+            "name": "Update employee",
+            "description": {},
+            "url": {
+              "path": [
+                "employees",
+                ":employeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "employeeId",
+                  "description": "(Required) The id of the employee"
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH"
+          },
+          "response": [
+            {
+              "id": "eea990e5-7ecf-44e2-afab-eadfb7d2f7f5",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'employees'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) The id of the employee"
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"identifier\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"name\": \"string\",\n      \"avatar\": \"string\",\n      \"employmentStart\": \"string\",\n      \"external\": true\n    },\n    \"relationships\": {\n      \"account\": {\n        \"data\": {\n          \"type\": \"string\",\n          \"id\": \"string\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f42cabd-6c7b-48cd-a88e-9b5824c9ba0f",
+          "name": "Delete employee",
+          "request": {
+            "name": "Delete employee",
+            "description": {},
+            "url": {
+              "path": [
+                "employees",
+                ":employeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "employeeId",
+                  "description": "(Required) The id of the employee"
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "8cf1f4d8-37d3-4a13-b31e-ac6f3e904b77",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) The id of the employee"
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Unique subdomain assigned to your Peakon instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "api",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.peakon.com/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7980e2c4-9e90-4703-827f-6b70af87300c",
+    "name": "Peakon Actions Employees API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Public Peakon API",
+      "type": "text/plain"
+    }
+  }
+}

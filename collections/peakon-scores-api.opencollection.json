@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peakon Actions Scores API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scores",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get category scores by group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/scores/contexts/:contextId/group/:group",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "path",
+                "description": "The name of the category group."
+              },
+              {
+                "name": "observations",
+                "value": "",
+                "type": "query",
+                "description": "Includes observations array in the returned object, defaults to *false*."
+              },
+              {
+                "name": "participation",
+                "value": "",
+                "type": "query",
+                "description": "Includes participation in the returned object, defaults to *false*."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Limit query to a specific date interval, defaults to *quarter*."
+              }
+            ]
+          },
+          "docs": "Get category scores according to group."
+        },
+        {
+          "info": {
+            "name": "Get question scores by group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/scores/contexts/:contextId/questions/group/:group",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "path",
+                "description": "The name of the category group."
+              },
+              {
+                "name": "observations",
+                "value": "",
+                "type": "query",
+                "description": "Includes observations array in the returned object, defaults to *false*."
+              },
+              {
+                "name": "participation",
+                "value": "",
+                "type": "query",
+                "description": "Includes participation in the returned object, defaults to *false*."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Limit query to a specific date interval, defaults to *quarter*."
+              },
+              {
+                "name": "includeSubcategories",
+                "value": "",
+                "type": "query",
+                "description": "Include scores for questions in subcategories."
+              }
+            ]
+          },
+          "docs": "Get question scores according to group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

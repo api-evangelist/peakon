@@ -1,0 +1,355 @@
+{
+  "item": [
+    {
+      "id": "2ad4b11b-aa12-436b-928e-0b966e84052f",
+      "name": "Scores",
+      "description": {
+        "content": "Retrieving scores",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5bbb736-8f89-4836-8302-61b5b05a1ac8",
+          "name": "Get category scores by group",
+          "request": {
+            "name": "Get category scores by group",
+            "description": {
+              "content": "Get category scores according to group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scores",
+                "contexts",
+                ":contextId",
+                "group",
+                ":group"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "observations",
+                  "value": "<boolean>",
+                  "description": "Includes observations array in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "participation",
+                  "value": "<boolean>",
+                  "description": "Includes participation in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Limit query to a specific date interval, defaults to *quarter*."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contextId",
+                  "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group",
+                  "description": "(Required) The name of the category group."
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a1ac923d-56cf-46fd-a5b5-1c666210d677",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'category_scores' objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scores",
+                    "contexts",
+                    ":contextId",
+                    "group",
+                    ":group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "observations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "participation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contextId",
+                      "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group",
+                      "description": "(Required) The name of the category group."
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"grade\": \"string\",\n        \"impact\": \"string\",\n        \"source\": \"string\",\n        \"scores\": {},\n        \"participation\": {}\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"grade\": \"string\",\n        \"impact\": \"string\",\n        \"source\": \"string\",\n        \"scores\": {},\n        \"participation\": {}\n      }\n    }\n  ],\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7efec97b-6d70-49eb-9e62-c72bd3212400",
+          "name": "Get question scores by group",
+          "request": {
+            "name": "Get question scores by group",
+            "description": {
+              "content": "Get question scores according to group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scores",
+                "contexts",
+                ":contextId",
+                "questions",
+                "group",
+                ":group"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "observations",
+                  "value": "<boolean>",
+                  "description": "Includes observations array in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "participation",
+                  "value": "<boolean>",
+                  "description": "Includes participation in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Limit query to a specific date interval, defaults to *quarter*."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubcategories",
+                  "value": "<boolean>",
+                  "description": "Include scores for questions in subcategories."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contextId",
+                  "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group",
+                  "description": "(Required) The name of the category group."
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d90896d1-4d93-4ada-87b7-0c646e66b1ca",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'engagement_questions' objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scores",
+                    "contexts",
+                    ":contextId",
+                    "questions",
+                    "group",
+                    ":group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "observations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "participation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeSubcategories",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contextId",
+                      "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group",
+                      "description": "(Required) The name of the category group."
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"scores\": {},\n        \"changes\": {},\n        \"observations\": {},\n        \"participation\": {},\n        \"url\": \"string\",\n        \"relationships\": {}\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"scores\": {},\n        \"changes\": {},\n        \"observations\": {},\n        \"participation\": {},\n        \"url\": \"string\",\n        \"relationships\": {}\n      }\n    }\n  ],\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Unique subdomain assigned to your Peakon instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "api",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.peakon.com/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "86cca1d4-85c9-47ad-89a4-9b88cfc2af8d",
+    "name": "Peakon Actions Scores API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Public Peakon API",
+      "type": "text/plain"
+    }
+  }
+}

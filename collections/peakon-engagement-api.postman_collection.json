@@ -1,0 +1,1577 @@
+{
+  "item": [
+    {
+      "id": "fe9427ed-05ca-46da-84b4-7d4b523ad9df",
+      "name": "Engagement",
+      "description": {
+        "content": "Retrieving engagement scores",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b7e3fefb-5c2c-4930-b63a-9a6562112945",
+          "name": "Get overview",
+          "request": {
+            "name": "Get overview",
+            "description": {
+              "content": "Return the engagement overview for the entire company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engagement",
+                "overview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "observations",
+                  "value": "<boolean>",
+                  "description": "Includes observations array in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "participation",
+                  "value": "<boolean>",
+                  "description": "Includes participation in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Limit query to a specific date interval, defaults to *quarter*."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ae49a5f2-b991-4075-9600-817e6d882228",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_overviews'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engagement",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "observations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "participation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"scores\": {},\n      \"changes\": {},\n      \"participation\": {}\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8571d6f-ea45-48b6-99e5-b005b3b712d8",
+          "name": "Get overview for context",
+          "request": {
+            "name": "Get overview for context",
+            "description": {
+              "content": "Return the engagement overview for the specified context.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engagement",
+                "contexts",
+                ":contextId",
+                "overview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "observations",
+                  "value": "<boolean>",
+                  "description": "Includes observations array in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "participation",
+                  "value": "<boolean>",
+                  "description": "Includes participation in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Limit query to a specific date interval, defaults to *quarter*."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contextId",
+                  "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "5dfcfe56-c47c-4403-aa12-810c95af76cb",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_overviews'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engagement",
+                    "contexts",
+                    ":contextId",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "observations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "participation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contextId",
+                      "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"scores\": {},\n      \"changes\": {},\n      \"participation\": {}\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf98031a-8bb1-492b-a507-2df0c5bcbbe6",
+          "name": "Get for drivers",
+          "request": {
+            "name": "Get for drivers",
+            "description": {
+              "content": "Return the engagement details per driver for the entire company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engagement",
+                "drivers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.driver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.subdriver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.valueId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[round.type]",
+                  "value": "automatic",
+                  "description": "The type of rounds to include data for"
+                },
+                {
+                  "disabled": false,
+                  "key": "observations",
+                  "value": "<boolean>",
+                  "description": "Includes observations array in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "participation",
+                  "value": "<boolean>",
+                  "description": "Includes participation in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Limit query to a specific date interval, defaults to *quarter*."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "9a98aa3f-a3f8-44b2-8299-6f8141f75928",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'engagement_drivers' objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engagement",
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[question.driver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.subdriver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.valueId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[round.type]",
+                      "value": "automatic"
+                    },
+                    {
+                      "key": "observations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "participation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"driver\": \"string\",\n        \"subdriver\": \"string\",\n        \"rank\": \"string\",\n        \"classification\": \"string\",\n        \"impact\": \"string\",\n        \"scores\": {},\n        \"changes\": {},\n        \"participation\": {},\n        \"url\": \"string\"\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"driver\": \"string\",\n        \"subdriver\": \"string\",\n        \"rank\": \"string\",\n        \"classification\": \"string\",\n        \"impact\": \"string\",\n        \"scores\": {},\n        \"changes\": {},\n        \"participation\": {},\n        \"url\": \"string\"\n      }\n    }\n  ],\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b616b631-7095-4366-913a-12c6d4f4b14e",
+          "name": "Get for drivers for context",
+          "request": {
+            "name": "Get for drivers for context",
+            "description": {
+              "content": "Return the engagement details per driver for the given context.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engagement",
+                "contexts",
+                ":contextId",
+                "drivers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.driver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.subdriver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.valueId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[round.type]",
+                  "value": "automatic",
+                  "description": "The type of rounds to include data for"
+                },
+                {
+                  "disabled": false,
+                  "key": "observations",
+                  "value": "<boolean>",
+                  "description": "Includes observations array in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "participation",
+                  "value": "<boolean>",
+                  "description": "Includes participation in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Limit query to a specific date interval, defaults to *quarter*."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contextId",
+                  "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "15e58d09-9245-41ba-9638-a08e7d6bd43b",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) containing an array of 'engagement_drivers' objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engagement",
+                    "contexts",
+                    ":contextId",
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[question.driver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.subdriver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.valueId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[round.type]",
+                      "value": "automatic"
+                    },
+                    {
+                      "key": "observations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "participation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contextId",
+                      "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"driver\": \"string\",\n        \"subdriver\": \"string\",\n        \"rank\": \"string\",\n        \"classification\": \"string\",\n        \"impact\": \"string\",\n        \"scores\": {},\n        \"changes\": {},\n        \"participation\": {},\n        \"url\": \"string\"\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"driver\": \"string\",\n        \"subdriver\": \"string\",\n        \"rank\": \"string\",\n        \"classification\": \"string\",\n        \"impact\": \"string\",\n        \"scores\": {},\n        \"changes\": {},\n        \"participation\": {},\n        \"url\": \"string\"\n      }\n    }\n  ],\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93d23249-9c23-4b80-aa21-6cd3854b97ff",
+          "name": "Get by driver",
+          "request": {
+            "name": "Get by driver",
+            "description": {
+              "content": "Return the engagement details for the given driver for the entire company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engagement",
+                "drivers",
+                ":driver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.driver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.subdriver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.valueId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[round.type]",
+                  "value": "automatic",
+                  "description": "The type of rounds to include data for"
+                },
+                {
+                  "disabled": false,
+                  "key": "observations",
+                  "value": "<boolean>",
+                  "description": "Includes observations array in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "participation",
+                  "value": "<boolean>",
+                  "description": "Includes participation in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Limit query to a specific date interval, defaults to *quarter*."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "driver",
+                  "description": "(Required) One of 18 supported engagement drivers"
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c1bf7b68-4736-4256-b4df-1d6b27a5b8ed",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_drivers'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engagement",
+                    "drivers",
+                    ":driver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[question.driver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.subdriver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.valueId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[round.type]",
+                      "value": "automatic"
+                    },
+                    {
+                      "key": "observations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "participation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driver",
+                      "description": "(Required) One of 18 supported engagement drivers"
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"driver\": \"string\",\n      \"subdriver\": \"string\",\n      \"rank\": \"string\",\n      \"classification\": \"string\",\n      \"impact\": \"string\",\n      \"scores\": {},\n      \"changes\": {},\n      \"participation\": {},\n      \"url\": \"string\"\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c111506-88f0-4b2c-a5cc-f6fddb1296bc",
+          "name": "Get by driver for context",
+          "request": {
+            "name": "Get by driver for context",
+            "description": {
+              "content": "Return the engagement details for the given driver for the given context.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engagement",
+                "contexts",
+                ":contextId",
+                "drivers",
+                ":driver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.driver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.subdriver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.valueId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[round.type]",
+                  "value": "automatic",
+                  "description": "The type of rounds to include data for"
+                },
+                {
+                  "disabled": false,
+                  "key": "observations",
+                  "value": "<boolean>",
+                  "description": "Includes observations array in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "participation",
+                  "value": "<boolean>",
+                  "description": "Includes participation in the returned object, defaults to *false*."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Limit query to a specific date interval, defaults to *quarter*."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contextId",
+                  "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "driver",
+                  "description": "(Required) One of 18 supported engagement drivers"
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "78bce145-7d4f-46a3-908e-82de5ddd8812",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_drivers'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engagement",
+                    "contexts",
+                    ":contextId",
+                    "drivers",
+                    ":driver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[question.driver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.subdriver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.valueId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[round.type]",
+                      "value": "automatic"
+                    },
+                    {
+                      "key": "observations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "participation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contextId",
+                      "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driver",
+                      "description": "(Required) One of 18 supported engagement drivers"
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"driver\": \"string\",\n      \"subdriver\": \"string\",\n      \"rank\": \"string\",\n      \"classification\": \"string\",\n      \"impact\": \"string\",\n      \"scores\": {},\n      \"changes\": {},\n      \"participation\": {},\n      \"url\": \"string\"\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c4ba827-856a-41c6-b88e-abf2849e490f",
+          "name": "Get segments",
+          "request": {
+            "name": "Get segments",
+            "description": {
+              "content": "Obtain a list of segments. The id of each segment can be used to get full engagement details using other methods in this area.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engagement",
+                "contexts",
+                ":contextId",
+                "segments",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.driver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.subdriver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.valueId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[round.type]",
+                  "value": "automatic",
+                  "description": "The type of rounds to include data for"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) A text to search for in segments"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contextId",
+                  "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "2f4c7056-6151-434b-aabd-575fb48e6c13",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_segments'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engagement",
+                    "contexts",
+                    ":contextId",
+                    "segments",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[question.driver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.subdriver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.valueId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[round.type]",
+                      "value": "automatic"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contextId",
+                      "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"size\": 7787,\n      \"links\": 7192,\n      \"classification\": \"priority\"\n    },\n    \"relationships\": {\n      \"segment\": {\n        \"data\": {\n          \"type\": \"string\",\n          \"id\": \"string\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa310c1d-b724-47d8-aead-f449c263d5e3",
+          "name": "Get segments groups",
+          "request": {
+            "name": "Get segments groups",
+            "description": {
+              "content": "Return the number of segments with engagement data grouped by attribute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engagement",
+                "contexts",
+                ":contextId",
+                "segments",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.driver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.subdriver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.valueId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[round.type]",
+                  "value": "automatic",
+                  "description": "The type of rounds to include data for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contextId",
+                  "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "1b37fa6b-68e1-4a39-b94c-cc722b13240a",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_segment_groups'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engagement",
+                    "contexts",
+                    ":contextId",
+                    "segments",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[question.driver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.subdriver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.valueId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[round.type]",
+                      "value": "automatic"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contextId",
+                      "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"segmentCount\": 4299,\n      \"negativeCount\": 8669,\n      \"positiveCount\": 6118\n    },\n    \"relationships\": {\n      \"attribute\": {\n        \"data\": {\n          \"type\": \"string\",\n          \"id\": \"string\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "928a97ec-509c-4d0b-9ddd-d2da502501d8",
+          "name": "Get segments for attribute",
+          "request": {
+            "name": "Get segments for attribute",
+            "description": {
+              "content": "Return the segments with engagement data within the given attribute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engagement",
+                "contexts",
+                ":contextId",
+                "segments",
+                "v2",
+                "attributes",
+                ":attributeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[employee.segmentIds]",
+                  "value": "<integer>",
+                  "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.driver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.subdriver]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[question.valueId]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[round.type]",
+                  "value": "automatic",
+                  "description": "The type of rounds to include data for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contextId",
+                  "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "attributeId",
+                  "description": "(Required) The id of the attribute to get segments for. Attribute ids can be retrieved using /engagement/contexts/{contextId}/segments."
+                },
+                {
+                  "description": "Unique subdomain assigned to your Peakon instance.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "db361922-745d-409b-a507-842d4f065f69",
+              "name": "A [JSONAPI resource](http://jsonapi.org/format/#document-resource-objects) of type 'engagement_segments'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engagement",
+                    "contexts",
+                    ":contextId",
+                    "segments",
+                    "v2",
+                    "attributes",
+                    ":attributeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[employee.segmentIds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[question.driver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.subdriver]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[question.valueId]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[round.type]",
+                      "value": "automatic"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contextId",
+                      "description": "(Required) A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "attributeId",
+                      "description": "(Required) The id of the attribute to get segments for. Attribute ids can be retrieved using /engagement/contexts/{contextId}/segments."
+                    },
+                    {
+                      "description": "Unique subdomain assigned to your Peakon instance.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"string\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"size\": 7787,\n      \"links\": 7192,\n      \"classification\": \"priority\"\n    },\n    \"relationships\": {\n      \"segment\": {\n        \"data\": {\n          \"type\": \"string\",\n          \"id\": \"string\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Unique subdomain assigned to your Peakon instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "api",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.peakon.com/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4818338b-81f1-47b7-bd0e-197cd8701193",
+    "name": "Peakon Actions Engagement API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Public Peakon API",
+      "type": "text/plain"
+    }
+  }
+}

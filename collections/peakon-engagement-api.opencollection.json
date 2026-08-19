@@ -1,0 +1,492 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peakon Actions Engagement API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Engagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/engagement/overview",
+            "params": [
+              {
+                "name": "observations",
+                "value": "",
+                "type": "query",
+                "description": "Includes observations array in the returned object, defaults to *false*."
+              },
+              {
+                "name": "participation",
+                "value": "",
+                "type": "query",
+                "description": "Includes participation in the returned object, defaults to *false*."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Limit query to a specific date interval, defaults to *quarter*."
+              }
+            ]
+          },
+          "docs": "Return the engagement overview for the entire company."
+        },
+        {
+          "info": {
+            "name": "Get overview for context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/engagement/contexts/:contextId/overview",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "observations",
+                "value": "",
+                "type": "query",
+                "description": "Includes observations array in the returned object, defaults to *false*."
+              },
+              {
+                "name": "participation",
+                "value": "",
+                "type": "query",
+                "description": "Includes participation in the returned object, defaults to *false*."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Limit query to a specific date interval, defaults to *quarter*."
+              }
+            ]
+          },
+          "docs": "Return the engagement overview for the specified context."
+        },
+        {
+          "info": {
+            "name": "Get for drivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/engagement/drivers",
+            "params": [
+              {
+                "name": "filter[employee.segmentIds]",
+                "value": "22$contains",
+                "type": "query",
+                "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+              },
+              {
+                "name": "filter[question.driver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.subdriver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.valueId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[round.type]",
+                "value": "",
+                "type": "query",
+                "description": "The type of rounds to include data for"
+              },
+              {
+                "name": "observations",
+                "value": "",
+                "type": "query",
+                "description": "Includes observations array in the returned object, defaults to *false*."
+              },
+              {
+                "name": "participation",
+                "value": "",
+                "type": "query",
+                "description": "Includes participation in the returned object, defaults to *false*."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Limit query to a specific date interval, defaults to *quarter*."
+              }
+            ]
+          },
+          "docs": "Return the engagement details per driver for the entire company."
+        },
+        {
+          "info": {
+            "name": "Get for drivers for context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/engagement/contexts/:contextId/drivers",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "filter[employee.segmentIds]",
+                "value": "22$contains",
+                "type": "query",
+                "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+              },
+              {
+                "name": "filter[question.driver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.subdriver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.valueId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[round.type]",
+                "value": "",
+                "type": "query",
+                "description": "The type of rounds to include data for"
+              },
+              {
+                "name": "observations",
+                "value": "",
+                "type": "query",
+                "description": "Includes observations array in the returned object, defaults to *false*."
+              },
+              {
+                "name": "participation",
+                "value": "",
+                "type": "query",
+                "description": "Includes participation in the returned object, defaults to *false*."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Limit query to a specific date interval, defaults to *quarter*."
+              }
+            ]
+          },
+          "docs": "Return the engagement details per driver for the given context."
+        },
+        {
+          "info": {
+            "name": "Get by driver",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/engagement/drivers/:driver",
+            "params": [
+              {
+                "name": "driver",
+                "value": "",
+                "type": "path",
+                "description": "One of 18 supported engagement drivers"
+              },
+              {
+                "name": "filter[employee.segmentIds]",
+                "value": "22$contains",
+                "type": "query",
+                "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+              },
+              {
+                "name": "filter[question.driver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.subdriver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.valueId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[round.type]",
+                "value": "",
+                "type": "query",
+                "description": "The type of rounds to include data for"
+              },
+              {
+                "name": "observations",
+                "value": "",
+                "type": "query",
+                "description": "Includes observations array in the returned object, defaults to *false*."
+              },
+              {
+                "name": "participation",
+                "value": "",
+                "type": "query",
+                "description": "Includes participation in the returned object, defaults to *false*."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Limit query to a specific date interval, defaults to *quarter*."
+              }
+            ]
+          },
+          "docs": "Return the engagement details for the given driver for the entire company."
+        },
+        {
+          "info": {
+            "name": "Get by driver for context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/engagement/contexts/:contextId/drivers/:driver",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "driver",
+                "value": "",
+                "type": "path",
+                "description": "One of 18 supported engagement drivers"
+              },
+              {
+                "name": "filter[employee.segmentIds]",
+                "value": "22$contains",
+                "type": "query",
+                "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+              },
+              {
+                "name": "filter[question.driver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.subdriver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.valueId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[round.type]",
+                "value": "",
+                "type": "query",
+                "description": "The type of rounds to include data for"
+              },
+              {
+                "name": "observations",
+                "value": "",
+                "type": "query",
+                "description": "Includes observations array in the returned object, defaults to *false*."
+              },
+              {
+                "name": "participation",
+                "value": "",
+                "type": "query",
+                "description": "Includes participation in the returned object, defaults to *false*."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Limit query to a specific date interval, defaults to *quarter*."
+              }
+            ]
+          },
+          "docs": "Return the engagement details for the given driver for the given context."
+        },
+        {
+          "info": {
+            "name": "Get segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/engagement/contexts/:contextId/segments/v2",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "filter[employee.segmentIds]",
+                "value": "22$contains",
+                "type": "query",
+                "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+              },
+              {
+                "name": "filter[question.driver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.subdriver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.valueId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[round.type]",
+                "value": "",
+                "type": "query",
+                "description": "The type of rounds to include data for"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "A text to search for in segments"
+              }
+            ]
+          },
+          "docs": "Obtain a list of segments. The id of each segment can be used to get full engagement details using other methods in this area."
+        },
+        {
+          "info": {
+            "name": "Get segments groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/engagement/contexts/:contextId/segments/groups",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "filter[employee.segmentIds]",
+                "value": "22$contains",
+                "type": "query",
+                "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+              },
+              {
+                "name": "filter[question.driver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.subdriver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.valueId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[round.type]",
+                "value": "",
+                "type": "query",
+                "description": "The type of rounds to include data for"
+              }
+            ]
+          },
+          "docs": "Return the number of segments with engagement data grouped by attribute."
+        },
+        {
+          "info": {
+            "name": "Get segments for attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/engagement/contexts/:contextId/segments/v2/attributes/:attributeId",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "attributeId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the attribute to get segments for. Attribute ids can be retrieved using /engagement/contexts/{contextId}/segments."
+              },
+              {
+                "name": "filter[employee.segmentIds]",
+                "value": "22$contains",
+                "type": "query",
+                "description": "The array of segment ids that the result should be filtered for. The segment ids should be sent comma-separated and ending with \"$contains\"."
+              },
+              {
+                "name": "filter[question.driver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.subdriver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[question.valueId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[round.type]",
+                "value": "",
+                "type": "query",
+                "description": "The type of rounds to include data for"
+              }
+            ]
+          },
+          "docs": "Return the segments with engagement data within the given attribute."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

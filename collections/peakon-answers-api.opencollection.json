@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peakon Actions Answers API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Answers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get survey answers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/answers/export",
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of survey answers returned per page"
+              }
+            ]
+          },
+          "docs": "Get survey answers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

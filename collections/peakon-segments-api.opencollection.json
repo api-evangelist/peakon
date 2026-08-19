@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peakon Actions Segments API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Segments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/segments",
+            "params": [
+              {
+                "name": "filter[attributeId]",
+                "value": "",
+                "type": "query",
+                "description": "The id of the attribute that is the source of a segment"
+              },
+              {
+                "name": "filter[direct]",
+                "value": "",
+                "type": "query",
+                "description": "Segment including only direct reports or all reports"
+              },
+              {
+                "name": "filter[managerId]",
+                "value": "",
+                "type": "query",
+                "description": "The employeeId of a manager of a segment"
+              },
+              {
+                "name": "filter[type]",
+                "value": "",
+                "type": "query",
+                "description": "The type of attribute that is the source of a segment"
+              }
+            ]
+          },
+          "docs": "Get segments"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

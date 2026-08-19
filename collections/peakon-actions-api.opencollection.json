@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peakon Actions API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.peakon.com/api/v1/actions/contexts/:contextId",
+            "params": [
+              {
+                "name": "contextId",
+                "value": "",
+                "type": "path",
+                "description": "A company or segment context id. Param is a `string` formatted as `company_[companyId]` or `segment_[segmentId]`."
+              },
+              {
+                "name": "filter[archivedAt]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[completedAt]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[driver]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[segment.segmentId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[subdriver]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get actions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
