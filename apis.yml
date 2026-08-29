@@ -9,6 +9,17 @@ description: >-
   answers, and audits, plus managing employees; it also offers a SCIM 2.0 provisioning API
   for continuous HRIS-driven user sync. Applications authenticate by exchanging a custom-app
   access token for a session bearer JWT scoped by per-app permissions.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
