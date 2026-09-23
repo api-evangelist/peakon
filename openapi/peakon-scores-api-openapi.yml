@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.1.0
-  title: Peakon Actions Scores API
+  title: Peakon Scores API
   description: The Public Peakon API
 servers:
 - url: https://{subdomain}.peakon.com/api/v1/
@@ -84,6 +84,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getScoresContextsByContextIdGroupByGroup
+      x-operation-id-source: derived
   /scores/contexts/{contextId}/questions/group/{group}:
     get:
       tags:
@@ -161,6 +163,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getScoresContextsByContextIdQuestionsGroupByGroup
+      x-operation-id-source: derived
 components:
   schemas:
     categoryScores:
@@ -187,13 +191,6 @@ components:
             participation:
               type: object
       type: object
-    resourceIdentifier:
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-      type: object
     engagementQuestions:
       properties:
         type:
@@ -215,4 +212,11 @@ components:
               type: string
             relationships:
               type: object
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
       type: object

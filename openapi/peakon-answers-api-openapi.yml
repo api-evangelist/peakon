@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.1.0
-  title: Peakon Actions Answers API
+  title: Peakon Answers API
   description: The Public Peakon API
 servers:
 - url: https://{subdomain}.peakon.com/api/v1/
@@ -53,122 +53,146 @@ paths:
                           type: object
                           properties:
                             accountEmail:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: Email of the participating employee
-                              nullable: true
                             answerId:
                               type: integer
                               description: An ID that uniquely identifies the answer
                             answerComment:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: A comment given by the participating employee for the given question
-                              nullable: true
                             answerLocale:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: A locale that was detected based on the answers given during the survey. If possible the language of questionText will match this.
-                              nullable: true
                             answerScore:
-                              type: integer
+                              type:
+                              - integer
+                              - 'null'
                               description: The score given by participating employee for the given question
-                              nullable: true
                             answerSkipReason:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: If the question was skipped, this field contain the reason
-                              nullable: true
                             answerText:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: If the question should be answered with text and not a score, this field contain the answer given
-                              nullable: true
                             categoryGroup:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: The set of questions that the asked question belong to
-                              nullable: true
                             categoryId:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: An ID that uniquely identifies the category/driver that the asked question belong to
-                              nullable: true
                             categoryStandard:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: Can be used to identify built-in categories/drivers across companies
-                              nullable: true
                             companyId:
-                              type: integer
+                              type:
+                              - integer
+                              - 'null'
                               description: An ID that uniquely identifies the company
-                              nullable: true
                             employeeExternalId:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: A company-specified ID that can used to identify an employee
-                              nullable: true
                             employeeId:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: An ID that uniquely identifies the employee
-                              nullable: true
                             questionId:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: An ID that uniquely identifies the asked question. Each question has translations so that questionText in different locales ties into the same questionId.
-                              nullable: true
                             questionText:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: The text of the question being asked. The language of questionText will match answerLocale. Default is the question text seen in the Peakon product.
-                              nullable: true
                             questionType:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: The type of question asked.
                               enum:
                               - scale
                               - text
                               - value
-                              nullable: true
                             responseAnsweredAt:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               format: date-time
                               description: The time when the survey response was submitted
-                              nullable: true
                             responseId:
-                              type: integer
+                              type:
+                              - integer
+                              - 'null'
                               description: An ID that uniquely identifies the asked response
-                              nullable: true
                             roundEnd:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               format: date
                               description: A date for when the survey round ended
-                              nullable: true
                             roundId:
-                              type: integer
+                              type:
+                              - integer
+                              - 'null'
                               description: An ID that uniquely identifies the round
-                              nullable: true
                             roundOpensAt:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               format: date
                               description: A date for when the survey round opened
-                              nullable: true
                             roundType:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: Is "test" if the survey is a test survey. "automatic" otherwise.
                               enum:
                               - automatic
                               - test
-                              nullable: true
                             scheduleContextName:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               description: The name of the Company or Segment that the schedule is for
-                              nullable: true
                             scheduleId:
-                              type: integer
+                              type:
+                              - integer
+                              - 'null'
                               description: An ID that uniquely identifies the schedule
-                              nullable: true
                   links:
                     type: object
                     properties:
                       first:
                         type: string
                         format: uri
-                        nullable: false
                       self:
                         type: string
                         format: uri
-                        nullable: false
                       next:
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         format: uri
-                        nullable: true
+      operationId: getAnswersExport
+      x-operation-id-source: derived

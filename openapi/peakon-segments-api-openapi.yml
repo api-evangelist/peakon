@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.1.0
-  title: Peakon Actions Segments API
+  title: Peakon Segments API
   description: The Public Peakon API
 servers:
 - url: https://{subdomain}.peakon.com/api/v1/
@@ -63,6 +63,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getSegments
+      x-operation-id-source: derived
 components:
   schemas:
     segments:

@@ -1,14 +1,7 @@
 {
   "provider": "peakon",
   "sources": [
-    "peakon-actions-api-openapi.yml",
-    "peakon-answers-api-openapi.yml",
-    "peakon-audits-api-openapi.yml",
-    "peakon-authentication-api-openapi.yml",
-    "peakon-employees-api-openapi.yml",
-    "peakon-engagement-api-openapi.yml",
-    "peakon-scores-api-openapi.yml",
-    "peakon-segments-api-openapi.yml"
+    "_original/peakon-openapi-original.json"
   ],
   "outputs": [
     "peakon-actions-api-openapi.yml",
@@ -23,6 +16,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "peakon-openapi-original.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "peakon-openapi-original.json: declared missing tag: Answers",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "peakon-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peakon-answers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peakon-audits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peakon-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peakon-employees-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peakon-engagement-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peakon-scores-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peakon-segments-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

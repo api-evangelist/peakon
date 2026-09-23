@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.1.0
-  title: Peakon Actions Employees API
+  title: Peakon Employees API
   description: The Public Peakon API
 servers:
 - url: https://{subdomain}.peakon.com/api/v1/
@@ -64,6 +64,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEmployees
+      x-operation-id-source: derived
     post:
       tags:
       - Employees
@@ -86,6 +88,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: postEmployees
+      x-operation-id-source: derived
   /employees/contexts/{contextId}:
     get:
       tags:
@@ -141,6 +145,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEmployeesContextsByContextId
+      x-operation-id-source: derived
   /employees/count:
     get:
       tags:
@@ -186,6 +192,8 @@ paths:
                   count:
                     type: integer
                     description: The total number of employees in the company
+      operationId: getEmployeesCount
+      x-operation-id-source: derived
   /employees/contexts/{contextId}/count:
     get:
       tags:
@@ -237,6 +245,8 @@ paths:
                   count:
                     type: integer
                     description: The total number of employees in the given context
+      operationId: getEmployeesContextsByContextIdCount
+      x-operation-id-source: derived
   /employees/{employeeId}:
     get:
       tags:
@@ -266,6 +276,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEmployeesByEmployeeId
+      x-operation-id-source: derived
     patch:
       tags:
       - Employees
@@ -294,6 +306,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: patchEmployeesByEmployeeId
+      x-operation-id-source: derived
     delete:
       tags:
       - Employees
@@ -310,6 +324,8 @@ paths:
       responses:
         '204':
           description: OK
+      operationId: deleteEmployeesByEmployeeId
+      x-operation-id-source: derived
 components:
   schemas:
     employees:

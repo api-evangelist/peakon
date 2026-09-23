@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.1.0
-  title: Peakon Actions Engagement API
+  title: Peakon Engagement API
   description: The Public Peakon API
 servers:
 - url: https://{subdomain}.peakon.com/api/v1/
@@ -58,6 +58,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEngagementOverview
+      x-operation-id-source: derived
   /engagement/contexts/{contextId}/overview:
     get:
       tags:
@@ -109,6 +111,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEngagementContextsByContextIdOverview
+      x-operation-id-source: derived
   /engagement/drivers:
     get:
       tags:
@@ -283,6 +287,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEngagementDrivers
+      x-operation-id-source: derived
   /engagement/contexts/{contextId}/drivers:
     get:
       tags:
@@ -463,6 +469,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEngagementContextsByContextIdDrivers
+      x-operation-id-source: derived
   /engagement/drivers/{driver}:
     get:
       tags:
@@ -659,6 +667,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEngagementDriversByDriver
+      x-operation-id-source: derived
   /engagement/contexts/{contextId}/drivers/{driver}:
     get:
       tags:
@@ -861,6 +871,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEngagementContextsByContextIdDriversByDriver
+      x-operation-id-source: derived
   /engagement/contexts/{contextId}/segments/v2:
     get:
       tags:
@@ -1024,6 +1036,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEngagementContextsByContextIdSegmentsV2
+      x-operation-id-source: derived
   /engagement/contexts/{contextId}/segments/groups:
     get:
       tags:
@@ -1181,6 +1195,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEngagementContextsByContextIdSegmentsGroups
+      x-operation-id-source: derived
   /engagement/contexts/{contextId}/segments/v2/attributes/{attributeId}:
     get:
       tags:
@@ -1344,6 +1360,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/resourceIdentifier'
                     description: An array of included JSONAPI resources
+      operationId: getEngagementContextsByContextIdSegmentsV2AttributesByAttributeId
+      x-operation-id-source: derived
 components:
   schemas:
     engagementOverviews:
@@ -1364,36 +1382,6 @@ components:
                 type: object
             participation:
               type: object
-      type: object
-    engagementSegmentGroups:
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-        attributes:
-          properties:
-            segmentCount:
-              type: integer
-            negativeCount:
-              type: integer
-            positiveCount:
-              type: integer
-        relationships:
-          type: object
-          properties:
-            attribute:
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/resourceIdentifier'
-      type: object
-    resourceIdentifier:
-      properties:
-        type:
-          type: string
-        id:
-          type: string
       type: object
     engagementDrivers:
       properties:
@@ -1426,6 +1414,29 @@ components:
             url:
               type: string
       type: object
+    engagementSegmentGroups:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          properties:
+            segmentCount:
+              type: integer
+            negativeCount:
+              type: integer
+            positiveCount:
+              type: integer
+        relationships:
+          type: object
+          properties:
+            attribute:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/resourceIdentifier'
+      type: object
     engagementSegments:
       properties:
         type:
@@ -1451,4 +1462,11 @@ components:
               properties:
                 data:
                   $ref: '#/components/schemas/resourceIdentifier'
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
       type: object

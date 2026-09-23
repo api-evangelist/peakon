@@ -1,0 +1,29 @@
+# Front Door AI Index — peakon — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: peakon
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.peakon.com
+  final_host: www.workday.com
+  ownership: own
+  owner: peakon
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 11
+  host_score: 11
+  density: 9.24
+  words: 1191
+  tiers:
+    agentic: 0
+    core: 11
+    model: 0
+  ambiguous: 8
+  top_terms:
+    AI: 8
+    intelligence: 4
+    agent: 3
+    artificial intelligence: 3
+    automation: 1
