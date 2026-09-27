@@ -1383,37 +1383,6 @@ components:
             participation:
               type: object
       type: object
-    engagementDrivers:
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-        attributes:
-          properties:
-            driver:
-              type: string
-            subdriver:
-              type: string
-            rank:
-              type: string
-            classification:
-              type: string
-            impact:
-              type: string
-            scores:
-              type: object
-            changes:
-              type: object
-            observations:
-              type: array
-              items:
-                type: object
-            participation:
-              type: object
-            url:
-              type: string
-      type: object
     engagementSegmentGroups:
       properties:
         type:
@@ -1462,6 +1431,37 @@ components:
               properties:
                 data:
                   $ref: '#/components/schemas/resourceIdentifier'
+      type: object
+    engagementDrivers:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          properties:
+            driver:
+              type: string
+            subdriver:
+              type: string
+            rank:
+              type: string
+            classification:
+              type: string
+            impact:
+              type: string
+            scores:
+              type: object
+            changes:
+              type: object
+            observations:
+              type: array
+              items:
+                type: object
+            participation:
+              type: object
+            url:
+              type: string
       type: object
     resourceIdentifier:
       properties:

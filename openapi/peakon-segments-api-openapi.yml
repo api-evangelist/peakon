@@ -67,6 +67,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+      type: object
     segments:
       properties:
         type:
@@ -96,11 +103,4 @@ components:
               type: string
             direct:
               type: boolean
-      type: object
-    resourceIdentifier:
-      properties:
-        type:
-          type: string
-        id:
-          type: string
       type: object
