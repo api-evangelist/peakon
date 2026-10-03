@@ -168,13 +168,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    resourceIdentifier:
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-      type: object
     actions:
       properties:
         type:
@@ -306,4 +299,11 @@ components:
               type: string
             notes:
               type: string
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
       type: object

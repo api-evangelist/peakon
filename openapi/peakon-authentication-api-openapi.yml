@@ -52,13 +52,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    resourceIdentifier:
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-      type: object
     bearerTokens:
       properties:
         type:
@@ -66,4 +59,11 @@ components:
         id:
           type: string
           description: The JWT token to use in the Authorization header of subsequent requests
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
       type: object

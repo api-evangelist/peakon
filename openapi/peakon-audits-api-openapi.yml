@@ -270,6 +270,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+      type: object
     audits:
       properties:
         type:
@@ -536,11 +543,4 @@ components:
               properties:
                 data:
                   $ref: '#/components/schemas/resourceIdentifier'
-      type: object
-    resourceIdentifier:
-      properties:
-        type:
-          type: string
-        id:
-          type: string
       type: object
