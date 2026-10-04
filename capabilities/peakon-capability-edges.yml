@@ -1,0 +1,45 @@
+slug: peakon
+provider: Peakon
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Engagement
+  spec_file: peakon-engagement-api-openapi.yml
+  capability_id: BC-300.60
+  capability_id_l1: BC-300
+  capability_name: Employee Experience Management
+  confidence: 0.9
+  evidence: 'GET /engagement/overview Get overview; GET /engagement/drivers Get for drivers; schemas:
+    engagementDrivers, engagementOverviews'
+  reason: Operations read employee engagement overviews, engagement drivers and segments — squarely employee
+    engagement/experience measurement within Human Capital Management.
+- tag: Scores
+  spec_file: peakon-scores-api-openapi.yml
+  capability_id: BC-300.60
+  capability_id_l1: BC-300
+  capability_name: Employee Experience Management
+  confidence: 0.8
+  evidence: 'GET /scores/contexts/{contextId}/questions/group/{group} Get question scores by group; schemas:
+    engagementQuestions, categoryScores'
+  reason: Scores here are engagement survey category/question scores, i.e. employee engagement measurement,
+    not a generic scoring utility.
+- tag: Answers
+  spec_file: peakon-answers-api-openapi.yml
+  capability_id: BC-300.60
+  capability_id_l1: BC-300
+  capability_name: Employee Experience Management
+  confidence: 0.75
+  evidence: GET /answers/export  getAnswersExport  Get survey answers
+  reason: Export of employee engagement survey answers from an 'employee engagement and experience platform'
+    — squarely Employee Experience Management (engagement measurement). Slight ambiguity only as to whether
+    it is better seen as analytics plumbing.
