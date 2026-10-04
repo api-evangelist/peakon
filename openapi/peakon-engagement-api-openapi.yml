@@ -1364,6 +1364,29 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    engagementSegmentGroups:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          properties:
+            segmentCount:
+              type: integer
+            negativeCount:
+              type: integer
+            positiveCount:
+              type: integer
+        relationships:
+          type: object
+          properties:
+            attribute:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/resourceIdentifier'
+      type: object
     engagementDrivers:
       properties:
         type:
@@ -1395,36 +1418,6 @@ components:
             url:
               type: string
       type: object
-    engagementSegmentGroups:
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-        attributes:
-          properties:
-            segmentCount:
-              type: integer
-            negativeCount:
-              type: integer
-            positiveCount:
-              type: integer
-        relationships:
-          type: object
-          properties:
-            attribute:
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/resourceIdentifier'
-      type: object
-    resourceIdentifier:
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-      type: object
     engagementSegments:
       properties:
         type:
@@ -1450,6 +1443,13 @@ components:
               properties:
                 data:
                   $ref: '#/components/schemas/resourceIdentifier'
+      type: object
+    resourceIdentifier:
+      properties:
+        type:
+          type: string
+        id:
+          type: string
       type: object
     engagementOverviews:
       properties:

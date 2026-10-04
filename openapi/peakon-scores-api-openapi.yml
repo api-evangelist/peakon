@@ -167,27 +167,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    engagementQuestions:
+    resourceIdentifier:
       properties:
         type:
           type: string
         id:
           type: string
-        attributes:
-          type: object
-          properties:
-            scores:
-              type: object
-            changes:
-              type: object
-            observations:
-              type: object
-            participation:
-              type: object
-            url:
-              type: string
-            relationships:
-              type: object
       type: object
     categoryScores:
       properties:
@@ -213,10 +198,25 @@ components:
             participation:
               type: object
       type: object
-    resourceIdentifier:
+    engagementQuestions:
       properties:
         type:
           type: string
         id:
           type: string
+        attributes:
+          type: object
+          properties:
+            scores:
+              type: object
+            changes:
+              type: object
+            observations:
+              type: object
+            participation:
+              type: object
+            url:
+              type: string
+            relationships:
+              type: object
       type: object
