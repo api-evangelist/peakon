@@ -64,6 +64,128 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Peakon is a company surfaced as a portfolio company of atomico, balderton-capital and added to the API Evangelist network as a stub for enrichment. Sector: saas. This profile is a lead awaiting the enrichment pipeline.
+Peakon (now Workday Peakon Employee Voice) is an employee engagement and experience platform for measuring and improving engagement through continuous surveys, driver analytics, and action-taking. Founded in Copenhagen and backed by Atomico and Balderton Capital, it was acquired by Workday in 2021. Peakon exposes a public REST API (v1.1.0, JSON:API) for reading engagement overviews, drivers, segment and category scores, survey answers, and audits, plus managing employees; it also offers a SCIM 2.0 provisioning API for continuous HRIS-driven user sync. Applications authenticate by exchanging a custom-app access token for a session bearer JWT scoped by per-app permissions.
 
-Backed by: atomico, balderton-capital — https://www.peakon.com
+**Areas:** Company · Software-as-a-Service · Employee Engagement · Employee Experience · Human Resources · Surveys · People Analytics · Workday
+
+## Peakon on APIs.io
+
+Everything profiled for Peakon is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/peakon/](https://apis.io/providers/peakon/)** — or go straight to one of the APIs or properties below.
+
+### APIs (8)
+
+- [Peakon Actions API](https://apis.io/apis/peakon/peakon-actions-api/) — Retrieving actions
+- [Peakon Answers API](https://apis.io/apis/peakon/peakon-answers-api/) — The Answers API from Peakon — 1 operation(s) for answers.
+- [Peakon Audits API](https://apis.io/apis/peakon/peakon-audits-api/) — Retrieving company audit log
+- [Peakon Authentication API](https://apis.io/apis/peakon/peakon-authentication-api/) — Authenticating with the API
+- [Peakon Employees API](https://apis.io/apis/peakon/peakon-employees-api/) — Manage employees
+- [Peakon Engagement API](https://apis.io/apis/peakon/peakon-engagement-api/) — Retrieving engagement scores
+- [Peakon Scores API](https://apis.io/apis/peakon/peakon-scores-api/) — Retrieving scores
+- [Peakon Segments API](https://apis.io/apis/peakon/peakon-segments-api/) — Retrieving segments
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [peakon](https://apis.io/servers/peakon/peakon/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Peakon Agentic Access](https://apis.io/agentic-access/peakon/peakon-agentic-access/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Peakon Actions API](https://apis.io/collections/peakon/open-peakon-actions-api/)
+- [Peakon Actions Answers API](https://apis.io/collections/peakon/open-peakon-answers-api/)
+- [Peakon Actions Audits API](https://apis.io/collections/peakon/open-peakon-audits-api/)
+- [Peakon Actions Authentication API](https://apis.io/collections/peakon/open-peakon-authentication-api/)
+- [Peakon Actions Employees API](https://apis.io/collections/peakon/open-peakon-employees-api/)
+- [Peakon Actions Engagement API](https://apis.io/collections/peakon/open-peakon-engagement-api/)
+- [Peakon Actions Scores API](https://apis.io/collections/peakon/open-peakon-scores-api/)
+- [Peakon Actions Segments API](https://apis.io/collections/peakon/open-peakon-segments-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Peakon Openapi Overlay](https://apis.io/overlays/peakon/peakon-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Peakon Authentication](https://apis.io/security/peakon/peakon-authentication/)
+- [Peakon Domain Security](https://apis.io/security/peakon/peakon-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.peakon.com)
+- [Documentation](https://doc.workday.com/peakon/en-us/workday-peakon-employee-voice.html)
+- [Getting started](https://developer.peakon.com/docs/getting-started)
+- [API reference](https://developer.peakon.com/reference)
+- [Support](https://support.peakon.com)
+- [GitHub](https://github.com/peakon)
+- [Status](https://status.peakon.com)
+
+## API Evangelist rating
+
+**Kin Score 30.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 44.4 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 42.3 |
+| Access clarity | 0.0 |
+
+**Agent readiness 21.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/peakon/](https://apis.io/providers/peakon/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Peakon: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/peakon/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
